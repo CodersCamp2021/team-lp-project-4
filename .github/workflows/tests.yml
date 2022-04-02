@@ -15,4 +15,4 @@ jobs:
         run: |
           npm ci
           npm run build --if-present
-          npm test --watchAll=false --passWithNoTests
+          npm test -- --watchAll=false --passWithNoTests
