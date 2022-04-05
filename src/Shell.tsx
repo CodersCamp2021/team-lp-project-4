@@ -11,6 +11,7 @@ import {
   Anchor,
   Group,
   Button,
+  Stack,
 } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
@@ -38,6 +39,21 @@ function Shell() {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles();
 
+  const endpoints = [
+    {
+      name: 'Games',
+      endpoint: '/games',
+    },
+    {
+      name: 'Sign in',
+      endpoint: '/login',
+    },
+    {
+      name: 'Sign up',
+      endpoint: '/register',
+    },
+  ];
+
   return (
     <AppShell
       fixed
@@ -48,11 +64,30 @@ function Shell() {
           hidden={!opened}
           hiddenBreakpoint="sm"
         >
-          <div className={classes.navbar} style={{ backgroundColor: 'red' }}>
-            <Anchor>Home</Anchor>
-            <Anchor>Features</Anchor>
-            <Anchor>Pricing</Anchor>
-          </div>
+          <Stack
+            className={classes.navbar}
+            spacing={30}
+            align={'center'}
+            justify={'center'}
+            p={20}
+          >
+            {endpoints.map(({ name, endpoint }) => (
+              <Anchor
+                component={Link}
+                to={endpoint}
+                key={endpoint}
+                align="center"
+                size="xl"
+                weight={500}
+                color="violet"
+                style={{
+                  fontSize: '28px',
+                }}
+              >
+                {name}
+              </Anchor>
+            ))}
+          </Stack>
         </Navbar>
       }
       header={
