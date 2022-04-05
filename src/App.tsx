@@ -1,13 +1,12 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
-import Nav from './Nav';
+import Shell from './Shell';
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div>Hello, World!</div>
-      <Nav />
+      <Shell />
     </QueryClientProvider>
   );
 }
