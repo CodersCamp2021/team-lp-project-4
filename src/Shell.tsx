@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import {
   createStyles,
   AppShell,
@@ -12,6 +12,7 @@ import {
   Group,
   Button,
   Stack,
+  Box,
 } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
@@ -35,24 +36,24 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function Shell() {
+const endpoints = [
+  {
+    name: 'Games',
+    endpoint: '/games',
+  },
+  {
+    name: 'Sign in',
+    endpoint: '/login',
+  },
+  {
+    name: 'Sign up',
+    endpoint: '/register',
+  },
+];
+
+const Shell = () => {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles();
-
-  const endpoints = [
-    {
-      name: 'Games',
-      endpoint: '/games',
-    },
-    {
-      name: 'Sign in',
-      endpoint: '/login',
-    },
-    {
-      name: 'Sign up',
-      endpoint: '/register',
-    },
-  ];
 
   return (
     <AppShell
@@ -80,7 +81,7 @@ function Shell() {
                 size="xl"
                 weight={500}
                 color="violet"
-                style={{
+                sx={{
                   fontSize: '28px',
                 }}
               >
@@ -92,8 +93,8 @@ function Shell() {
       }
       header={
         <Header height={70} className={classes.header} px="20%">
-          <div
-            style={{
+          <Box
+            sx={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -108,7 +109,7 @@ function Shell() {
               gradient={{ from: 'indigo', to: 'violet', deg: 45 }}
               size="xl"
               weight={700}
-              style={{
+              sx={{
                 fontFamily: 'Poppins, sans-serif',
                 fontSize: '36px',
               }}
@@ -124,7 +125,7 @@ function Shell() {
                 mr="md"
               />
             </MediaQuery>
-            <div className={classes.links}>
+            <Box className={classes.links}>
               <Group spacing="xl">
                 <Button
                   compact
@@ -156,16 +157,19 @@ function Shell() {
                   Sign up
                 </Button>
               </Group>
-            </div>
-          </div>
+            </Box>
+          </Box>
         </Header>
       }
     >
-      {
-        // here goes the home hero section
-      }
+      <Routes>
+        <Route path="/" element={<div>home</div>} />
+        <Route path="/games" element={<div>games</div>} />
+        <Route path="/login" element={<div>login</div>} />
+        <Route path="/register" element={<div>register</div>} />
+      </Routes>
     </AppShell>
   );
-}
+};
 
 export default Shell;
