@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
-import { createStyles, AppShell, Navbar, Anchor, Stack } from '@mantine/core';
+import { Route, Routes } from 'react-router-dom';
+import { createStyles, AppShell } from '@mantine/core';
 
 import AppHeader from './AppHeader';
+import AppNavbar from './AppNavbar';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -49,36 +50,11 @@ const Shell = () => {
       fixed
       navbarOffsetBreakpoint="sm"
       navbar={
-        <Navbar
-          width={{ base: '100%', sm: 0 }}
-          hidden={!opened}
-          hiddenBreakpoint="sm"
-        >
-          <Stack
-            className={classes.navbar}
-            spacing={30}
-            align={'center'}
-            justify={'center'}
-            p={20}
-          >
-            {endpoints.map(({ name, endpoint }) => (
-              <Anchor
-                component={Link}
-                to={endpoint}
-                key={endpoint}
-                align="center"
-                size="xl"
-                weight={500}
-                color="violet"
-                sx={{
-                  fontSize: '28px',
-                }}
-              >
-                {name}
-              </Anchor>
-            ))}
-          </Stack>
-        </Navbar>
+        <AppNavbar
+          opened={opened}
+          classes={classes}
+          endpoints={endpoints}
+        ></AppNavbar>
       }
       header={
         <AppHeader

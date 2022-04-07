@@ -1,4 +1,4 @@
-import { createStyles, AppShell, Navbar, Anchor, Stack } from '@mantine/core';
+import { Navbar, Anchor, Stack } from '@mantine/core';
 import { Link } from 'react-router-dom';
 
 type AppNavbarProps = {
@@ -44,3 +44,5 @@ const AppNavbar = ({ opened, classes, endpoints }: AppNavbarProps) => {
     </Navbar>
   );
 };
+
+export default AppNavbar;
