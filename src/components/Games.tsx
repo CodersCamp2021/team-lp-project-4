@@ -79,40 +79,83 @@ const Recommended = () => {
         width: '80%',
       }}
     >
-      <Group>
+      <Group spacing="xl">
         {placeholderData.map(({ _id, title, cover, rating, developer }) => (
           <Card
             key={_id}
-            sx={{
+            shadow="2px 2px 20px 0px rgba(0, 0, 0, 0.25)"
+            sx={(theme) => ({
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
               width: '170px',
               height: '210px',
               background: 'rgba(29, 23, 23, 0.9)',
-              borderRadius: '15px',
-            }}
+              borderRadius: theme.radius.md,
+            })}
           >
             <Card.Section>
-              <Image src={cover} alt={title} sx={{ maxWidth: '90px' }} />
+              <Image
+                radius="sm"
+                src={cover}
+                alt={title}
+                sx={{
+                  width: '90px',
+                  margin: 'auto',
+                  padding: '26px 40px 8px',
+                }}
+              />
             </Card.Section>
             <Card.Section>
               <Text
-                sx={{
-                  fontFamily: 'Poppins',
-                  fontSize: '22px',
+                sx={(theme) => ({
+                  width: '132px',
+                  margin: '0 auto',
+                  fontFamily: theme.fontFamily,
+                  fontSize: theme.fontSizes.xl,
                   fontWeight: '600',
                   lineHeight: '22px',
                   letterSpacing: '0em',
                   textAlign: 'center',
-                  color: 'rgba(255, 255, 255, 1)',
-                }}
+                  color: theme.colors.gray[0],
+                })}
               >
                 {title}
               </Text>
             </Card.Section>
             <Card.Section>
-              <Text>{rating}/5</Text>
+              <Text
+                sx={(theme) => ({
+                  fontFamily: theme.fontFamily,
+                  fontSize: '12px',
+                  color: theme.colors.gray[5],
+                  fontWeight: 700,
+                  textAlign: 'center',
+                  margin: '0',
+                })}
+              >
+                {rating}/5 ⭐️
+              </Text>
             </Card.Section>
             <Card.Section>
-              <Text>{developer}</Text>
+              <Text
+                transform="uppercase"
+                sx={(theme) => ({
+                  width: '130px',
+                  margin: '0 auto',
+                  fontFamily: theme.fontFamily,
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  lineHeight: '22.5px',
+                  textAlign: 'center',
+                  color: 'rgba(135, 135, 135, 1)',
+                })}
+              >
+                {developer}
+              </Text>
             </Card.Section>
           </Card>
         ))}
@@ -153,6 +196,7 @@ const Games = () => {
       justify="center"
       sx={{
         width: '1200px',
+        margin: 'auto',
         minHeight: '85vh',
         gridTemplateColumns: '2fr',
         border: '1px solid red',
