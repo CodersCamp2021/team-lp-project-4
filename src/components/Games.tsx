@@ -88,8 +88,9 @@ const Recommended = () => {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
+              alignItems: 'center',
               width: '170px',
-              height: '210px',
+              height: '220px',
               background: 'rgba(29, 23, 23, 0.9)',
               borderRadius: theme.radius.md,
             })}
@@ -101,7 +102,6 @@ const Recommended = () => {
                 alt={title}
                 sx={{
                   width: '90px',
-                  margin: 'auto',
                   padding: '26px 40px 8px',
                 }}
               />
@@ -110,7 +110,6 @@ const Recommended = () => {
               <Text
                 sx={(theme) => ({
                   width: '132px',
-                  margin: '0 auto',
                   fontFamily: theme.fontFamily,
                   fontSize: theme.fontSizes.xl,
                   fontWeight: '600',
@@ -130,8 +129,6 @@ const Recommended = () => {
                   fontSize: '12px',
                   color: theme.colors.gray[5],
                   fontWeight: 700,
-                  textAlign: 'center',
-                  margin: '0',
                 })}
               >
                 {rating}/5 ⭐️
@@ -142,7 +139,6 @@ const Recommended = () => {
                 transform="uppercase"
                 sx={(theme) => ({
                   width: '130px',
-                  margin: '0 auto',
                   fontFamily: theme.fontFamily,
                   fontSize: '15px',
                   fontWeight: '600',
@@ -152,6 +148,7 @@ const Recommended = () => {
                   lineHeight: '22.5px',
                   textAlign: 'center',
                   color: 'rgba(135, 135, 135, 1)',
+                  paddingBottom: '5px',
                 })}
               >
                 {developer}
