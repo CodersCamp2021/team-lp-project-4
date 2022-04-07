@@ -1,19 +1,8 @@
 import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
-import {
-  createStyles,
-  AppShell,
-  Header,
-  Navbar,
-  Burger,
-  MediaQuery,
-  Text,
-  Anchor,
-  Group,
-  Button,
-  Stack,
-  Box,
-} from '@mantine/core';
+import { createStyles, AppShell, Navbar, Anchor, Stack } from '@mantine/core';
+
+import AppHeader from './AppHeader';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -92,74 +81,11 @@ const Shell = () => {
         </Navbar>
       }
       header={
-        <Header height={70} className={classes.header} px="20%">
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              height: '100%',
-            }}
-          >
-            <Text
-              component={Link}
-              to="/"
-              align="center"
-              variant="gradient"
-              gradient={{ from: 'indigo', to: 'violet', deg: 45 }}
-              size="xl"
-              weight={700}
-              sx={{
-                fontFamily: 'Poppins, sans-serif',
-                fontSize: '36px',
-              }}
-            >
-              L O G O
-            </Text>
-            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-              <Burger
-                opened={opened}
-                onClick={() => setOpened((o) => !o)}
-                size={30}
-                color="#7048E8"
-                mr="md"
-              />
-            </MediaQuery>
-            <Box className={classes.links}>
-              <Group spacing="xl">
-                <Button
-                  compact
-                  size="lg"
-                  color="violet"
-                  variant="subtle"
-                  component={Link}
-                  to="/games"
-                >
-                  Games
-                </Button>
-                <Button
-                  compact
-                  size="lg"
-                  color="violet"
-                  variant="subtle"
-                  component={Link}
-                  to="/login"
-                >
-                  Sign in
-                </Button>
-                <Button
-                  compact
-                  size="lg"
-                  color="violet"
-                  component={Link}
-                  to="/register"
-                >
-                  Sign up
-                </Button>
-              </Group>
-            </Box>
-          </Box>
-        </Header>
+        <AppHeader
+          opened={opened}
+          classes={classes}
+          setOpenedCallback={setOpened}
+        ></AppHeader>
       }
     >
       <Routes>
