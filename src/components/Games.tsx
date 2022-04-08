@@ -1,4 +1,6 @@
 import { Grid, Center, Group, Card, Image, Text } from '@mantine/core';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const placeholderData = [
   {
@@ -72,90 +74,114 @@ const placeholderData = [
   },
 ];
 
+const variants = {
+  current: { scale: 1.25, originY: 1 },
+  adjacent: { scale: 1.15, originY: 1 },
+};
+
 const Recommended = () => {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
   return (
     <Center
       sx={{
-        width: '80%',
+        width: '90%',
       }}
     >
-      <Group spacing="xl">
-        {placeholderData.map(({ _id, title, cover, rating, developer }) => (
-          <Card
-            key={_id}
-            shadow="2px 2px 20px 0px rgba(0, 0, 0, 0.25)"
-            sx={(theme) => ({
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              width: '170px',
-              height: '220px',
-              background: 'rgba(29, 23, 23, 0.9)',
-              borderRadius: theme.radius.md,
-            })}
-          >
-            <Card.Section>
-              <Image
-                radius="sm"
-                src={cover}
-                alt={title}
-                sx={{
-                  width: '90px',
-                  padding: '26px 40px 8px',
-                }}
-              />
-            </Card.Section>
-            <Card.Section>
-              <Text
+      <Group spacing={40}>
+        {placeholderData.map(
+          ({ _id, title, cover, rating, developer }, index) => (
+            <motion.div
+              key={_id}
+              animate={
+                hoveredCard === index
+                  ? 'current'
+                  : hoveredCard === index - 1
+                  ? 'adjacent'
+                  : hoveredCard === index + 1
+                  ? 'adjacent'
+                  : undefined
+              }
+              variants={variants}
+            >
+              <Card
+                onMouseEnter={() => setHoveredCard(index)}
+                onMouseLeave={() => setHoveredCard(null)}
+                shadow="2px 2px 20px 0px rgba(0, 0, 0, 0.25)"
                 sx={(theme) => ({
-                  width: '132px',
-                  fontFamily: theme.fontFamily,
-                  fontSize: theme.fontSizes.xl,
-                  fontWeight: '600',
-                  lineHeight: '22px',
-                  letterSpacing: '0em',
-                  textAlign: 'center',
-                  color: theme.colors.gray[0],
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  width: '170px',
+                  height: '220px',
+                  background: 'rgba(29, 23, 23, 0.9)',
+                  borderRadius: theme.radius.md,
                 })}
               >
-                {title}
-              </Text>
-            </Card.Section>
-            <Card.Section>
-              <Text
-                sx={(theme) => ({
-                  fontFamily: theme.fontFamily,
-                  fontSize: '12px',
-                  color: theme.colors.gray[5],
-                  fontWeight: 700,
-                })}
-              >
-                {rating}/5 ⭐️
-              </Text>
-            </Card.Section>
-            <Card.Section>
-              <Text
-                transform="uppercase"
-                sx={(theme) => ({
-                  width: '130px',
-                  fontFamily: theme.fontFamily,
-                  fontSize: '15px',
-                  fontWeight: '600',
-                  textOverflow: 'ellipsis',
-                  overflow: 'hidden',
-                  whiteSpace: 'nowrap',
-                  lineHeight: '22.5px',
-                  textAlign: 'center',
-                  color: 'rgba(135, 135, 135, 1)',
-                  paddingBottom: '5px',
-                })}
-              >
-                {developer}
-              </Text>
-            </Card.Section>
-          </Card>
-        ))}
+                <Card.Section>
+                  <Image
+                    radius="sm"
+                    src={cover}
+                    alt={title}
+                    sx={{
+                      width: '80px',
+                      padding: '26px 40px 8px',
+                    }}
+                  />
+                </Card.Section>
+                <Card.Section>
+                  <Text
+                    sx={(theme) => ({
+                      width: '132px',
+                      fontFamily: theme.fontFamily,
+                      fontSize: theme.fontSizes.xl,
+                      fontWeight: '600',
+                      lineHeight: '22px',
+                      letterSpacing: '0em',
+                      textAlign: 'center',
+                      color: theme.colors.gray[0],
+                    })}
+                  >
+                    {title}
+                  </Text>
+                </Card.Section>
+                <Card.Section>
+                  <Text
+                    sx={(theme) => ({
+                      fontFamily: theme.fontFamily,
+                      fontSize: '12px',
+                      color: theme.colors.gray[5],
+                      fontWeight: 700,
+                    })}
+                  >
+                    {rating}/5 ⭐️
+                  </Text>
+                </Card.Section>
+                <Card.Section>
+                  <Text
+                    transform="uppercase"
+                    sx={(theme) => ({
+                      width: '130px',
+                      fontFamily: theme.fontFamily,
+                      fontSize: '15px',
+                      fontWeight: '600',
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                      whiteSpace: 'nowrap',
+                      lineHeight: '22.5px',
+                      textAlign: 'center',
+                      color: 'rgba(135, 135, 135, 1)',
+                      paddingBottom: '5px',
+                    })}
+                  >
+                    {developer}
+                  </Text>
+                </Card.Section>
+              </Card>
+            </motion.div>
+          ),
+        )}
       </Group>
     </Center>
   );
