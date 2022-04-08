@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Text, Group, Card, Image } from '@mantine/core';
+import { Box, Text, Group, Card, Image } from '@mantine/core';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -77,19 +77,18 @@ const placeholderData = [
 
 const variants = {
   current: { scale: 1.25, originY: 1 },
-  adjacent: { scale: 1.15, originY: 1 },
+  adjacent: { scale: 1.1, originY: 1 },
 };
 
 const Recommended = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <Container
-      fluid
+    <Box
       sx={{
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
       }}
     >
       <Text
@@ -101,14 +100,21 @@ const Recommended = () => {
           fontSize: 100,
           textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
           lineHeight: '100px',
-          letterSpacing: '25px',
-          paddingBottom: 20,
+          letterSpacing: '30px',
+          marginRight: '-30px',
+          paddingBottom: 30,
           userSelect: 'none',
+          textAlign: 'center',
         })}
       >
         Recommended
       </Text>
-      <Group spacing={40}>
+      <Group
+        spacing={45}
+        sx={{
+          justifyContent: 'center',
+        }}
+      >
         {placeholderData.map(
           ({ _id, title, cover, rating, developer }, index) => (
             <motion.div
@@ -206,7 +212,7 @@ const Recommended = () => {
           ),
         )}
       </Group>
-    </Container>
+    </Box>
   );
 };
 

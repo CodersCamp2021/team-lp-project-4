@@ -30,19 +30,22 @@ const AllGames = () => {
 const Games = () => {
   return (
     <Grid
-      justify="center"
       sx={{
         width: '80vw',
+        height: '80%',
+        alignItems: 'center',
         margin: '0 auto',
-        height: '100%',
-        gridTemplateColumns: '2fr',
-        border: 'none',
       }}
     >
-      <Recommended />
-
-      <TopRated />
-      <AllGames />
+      <Grid.Col sx={{}} span={12}>
+        <Recommended />
+      </Grid.Col>
+      <Grid.Col span={6}>
+        <TopRated />
+      </Grid.Col>
+      <Grid.Col span={6}>
+        <AllGames />
+      </Grid.Col>
     </Grid>
   );
 };
