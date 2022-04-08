@@ -1,4 +1,12 @@
-import { Grid, Center, Group, Card, Image, Text } from '@mantine/core';
+import {
+  Grid,
+  Center,
+  Group,
+  Card,
+  Image,
+  Text,
+  Container,
+} from '@mantine/core';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -83,11 +91,29 @@ const Recommended = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <Center
+    <Container
+      fluid
       sx={{
-        width: '90%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
       }}
     >
+      <Text
+        transform="uppercase"
+        color="rgba(255, 255, 255, 0.55)"
+        sx={(theme) => ({
+          fontFamily: theme.fontFamily,
+          fontWeight: 700,
+          fontSize: 100,
+          textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+          lineHeight: '100px',
+          letterSpacing: '25px',
+          paddingBottom: 20,
+        })}
+      >
+        Recommended
+      </Text>
       <Group spacing={40}>
         {placeholderData.map(
           ({ _id, title, cover, rating, developer }, index) => (
@@ -113,8 +139,8 @@ const Recommended = () => {
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  width: '170px',
-                  height: '220px',
+                  width: 170,
+                  height: 220,
                   background: 'rgba(29, 23, 23, 0.9)',
                   borderRadius: theme.radius.md,
                 })}
@@ -125,7 +151,7 @@ const Recommended = () => {
                     src={cover}
                     alt={title}
                     sx={{
-                      width: '80px',
+                      width: 80,
                       padding: '26px 40px 8px',
                     }}
                   />
@@ -133,10 +159,10 @@ const Recommended = () => {
                 <Card.Section>
                   <Text
                     sx={(theme) => ({
-                      width: '132px',
+                      width: 132,
                       fontFamily: theme.fontFamily,
                       fontSize: theme.fontSizes.xl,
-                      fontWeight: '600',
+                      fontWeight: 600,
                       lineHeight: '22px',
                       letterSpacing: '0em',
                       textAlign: 'center',
@@ -150,7 +176,7 @@ const Recommended = () => {
                   <Text
                     sx={(theme) => ({
                       fontFamily: theme.fontFamily,
-                      fontSize: '12px',
+                      fontSize: 12,
                       color: theme.colors.gray[5],
                       fontWeight: 700,
                     })}
@@ -162,15 +188,16 @@ const Recommended = () => {
                   <Text
                     transform="uppercase"
                     sx={(theme) => ({
-                      width: '130px',
+                      width: '140px',
                       fontFamily: theme.fontFamily,
-                      fontSize: '15px',
-                      fontWeight: '600',
+                      fontSize: 15,
+                      fontWeight: 600,
                       textOverflow: 'ellipsis',
                       overflow: 'hidden',
                       whiteSpace: 'nowrap',
                       lineHeight: '22.5px',
                       textAlign: 'center',
+                      letterSpacing: '0.5px',
                       color: 'rgba(135, 135, 135, 1)',
                       paddingBottom: '5px',
                     })}
@@ -183,7 +210,7 @@ const Recommended = () => {
           ),
         )}
       </Group>
-    </Center>
+    </Container>
   );
 };
 
@@ -222,7 +249,6 @@ const Games = () => {
         margin: 'auto',
         minHeight: '85vh',
         gridTemplateColumns: '2fr',
-        border: '1px solid red',
       }}
     >
       <Recommended />
