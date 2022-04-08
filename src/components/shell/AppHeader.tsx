@@ -38,6 +38,7 @@ const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
             fontFamily: 'Poppins, sans-serif',
             fontSize: '36px',
           }}
+          onClick={() => setOpenedCallback(false)}
         >
           L O G O
         </Text>

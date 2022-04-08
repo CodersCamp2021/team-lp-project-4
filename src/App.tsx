@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
-import Shell from './Shell';
+import Shell from './components/shell/Shell';
 
 const queryClient = new QueryClient();
 

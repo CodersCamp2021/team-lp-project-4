@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 type AppNavbarProps = {
   opened: boolean;
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
   classes: Record<'header' | 'navbar' | 'links', string>;
   endpoints: {
     name: string;
@@ -10,7 +11,12 @@ type AppNavbarProps = {
   }[];
 };
 
-const AppNavbar = ({ opened, classes, endpoints }: AppNavbarProps) => {
+const AppNavbar = ({
+  opened,
+  setOpened,
+  classes,
+  endpoints,
+}: AppNavbarProps) => {
   return (
     <Navbar
       width={{ base: '100%', sm: 0 }}
@@ -36,6 +42,7 @@ const AppNavbar = ({ opened, classes, endpoints }: AppNavbarProps) => {
             sx={{
               fontSize: '28px',
             }}
+            onClick={() => setOpened(false)}
           >
             {name}
           </Anchor>

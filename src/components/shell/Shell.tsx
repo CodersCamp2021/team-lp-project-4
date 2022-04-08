@@ -52,6 +52,7 @@ const Shell = () => {
       navbar={
         <AppNavbar
           opened={opened}
+          setOpened={setOpened}
           classes={classes}
           endpoints={endpoints}
         ></AppNavbar>
