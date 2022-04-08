@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Container, Text, Group, Card, Image } from '@mantine/core';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const placeholderData = [
   {
@@ -136,6 +137,8 @@ const Recommended = () => {
                   background: 'rgba(29, 23, 23, 0.9)',
                   borderRadius: theme.radius.md,
                 })}
+                component={Link}
+                to={_id}
               >
                 <Card.Section>
                   <Image
