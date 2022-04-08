@@ -4,7 +4,9 @@ import { createStyles, AppShell } from '@mantine/core';
 
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
-import Home from './components/Home/Home';
+
+import Games from '../Games';
+import Home from '../Home/Home';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -50,9 +52,12 @@ const Shell = () => {
     <AppShell
       fixed
       navbarOffsetBreakpoint="sm"
+      padding={0}
+      sx={{ border: 'none', overflow: 'hidden' }}
       navbar={
         <AppNavbar
           opened={opened}
+          setOpened={setOpened}
           classes={classes}
           endpoints={endpoints}
         ></AppNavbar>
@@ -67,7 +72,7 @@ const Shell = () => {
     >
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/games" element={<div>games</div>} />
+        <Route path="/games" element={<Games />} />
         <Route path="/login" element={<div>login</div>} />
         <Route path="/register" element={<div>register</div>} />
       </Routes>

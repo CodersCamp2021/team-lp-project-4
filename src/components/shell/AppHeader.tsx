@@ -17,7 +17,12 @@ type AppHeaderProps = {
 };
 const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
   return (
-    <Header height={70} className={classes.header} px="20%">
+    <Header
+      height={70}
+      className={classes.header}
+      px="20%"
+      sx={{ background: 'none', border: 'none' }}
+    >
       <Box
         sx={{
           display: 'flex',
@@ -38,6 +43,7 @@ const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
             fontFamily: 'Poppins, sans-serif',
             fontSize: '36px',
           }}
+          onClick={() => setOpenedCallback(false)}
         >
           L O G O
         </Text>
