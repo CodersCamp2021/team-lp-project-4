@@ -4,6 +4,7 @@ import { createStyles, AppShell } from '@mantine/core';
 
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
+import Home from './components/Home/Home';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -65,7 +66,7 @@ const Shell = () => {
       }
     >
       <Routes>
-        <Route path="/" element={<div>home</div>} />
+        <Route path="/" element={<Home />} />
         <Route path="/games" element={<div>games</div>} />
         <Route path="/login" element={<div>login</div>} />
         <Route path="/register" element={<div>register</div>} />
