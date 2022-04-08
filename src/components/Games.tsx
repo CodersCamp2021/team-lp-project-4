@@ -32,10 +32,11 @@ const Games = () => {
     <Grid
       justify="center"
       sx={{
-        width: '1200px',
-        margin: 'auto',
-        minHeight: '85vh',
+        width: '80vw',
+        margin: '0 auto',
+        height: '100%',
         gridTemplateColumns: '2fr',
+        border: 'none',
       }}
     >
       <Recommended />

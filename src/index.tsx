@@ -5,7 +5,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 ReactDOM.render(
   <HashRouter>
     <Routes>
-      <Route path="/" element={<App />} />
+      <Route path="*" element={<App />} />
     </Routes>
   </HashRouter>,
   document.getElementById('root'),
