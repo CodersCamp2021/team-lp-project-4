@@ -103,6 +103,7 @@ const Recommended = () => {
           lineHeight: '100px',
           letterSpacing: '25px',
           paddingBottom: 20,
+          userSelect: 'none',
         })}
       >
         Recommended
