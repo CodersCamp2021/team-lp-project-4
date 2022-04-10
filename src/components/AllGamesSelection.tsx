@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Text, Group, Card, Image } from '@mantine/core';
+import { Box, Text, Card, Image, Stack } from '@mantine/core';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -72,7 +72,7 @@ const AllGamesSelection = () => {
     <Box
       sx={{
         height: 400,
-        width: '100%',
+        width: '540px',
         paddingTop: 30,
       }}
     >
@@ -88,7 +88,7 @@ const AllGamesSelection = () => {
       >
         All Games
       </Text>
-      <Group
+      <Stack
         spacing={10}
         sx={{
           justifyContent: 'center',
@@ -108,9 +108,8 @@ const AllGamesSelection = () => {
                 sx={(theme) => ({
                   display: 'flex',
                   flexDirection: 'row',
-                  //  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  width: 500,
+                  width: '100%',
+                  justifyContent: 'space-between',
                   height: 70,
                   background: 'rgba(29, 23, 23, 0.9)',
                   borderRadius: theme.radius.md,
@@ -119,29 +118,24 @@ const AllGamesSelection = () => {
                 to={_id}
               >
                 <Card.Section>
-                  <Box>
-                    <Image
-                      radius="sm"
-                      src={cover}
-                      alt={title}
-                      sx={{
-                        width: 40,
-                        padding: '26px 40px 8px',
-                      }}
-                    />
-                  </Box>
+                  <Image
+                    radius="sm"
+                    src={cover}
+                    alt={title}
+                    sx={{
+                      width: 40,
+                    }}
+                  />
                 </Card.Section>
                 <Card.Section>
                   <Box>
                     <Text
                       sx={(theme) => ({
-                        width: 200,
                         fontFamily: theme.fontFamily,
                         fontSize: theme.fontSizes.xl,
                         fontWeight: 50,
                         lineHeight: '22px',
                         letterSpacing: '0em',
-                        textAlign: 'center',
                         color: theme.colors.gray[0],
                       })}
                     >
@@ -150,18 +144,12 @@ const AllGamesSelection = () => {
                     <Text
                       transform="uppercase"
                       sx={(theme) => ({
-                        width: '140px',
                         fontFamily: theme.fontFamily,
                         fontSize: 15,
                         fontWeight: 600,
-                        textOverflow: 'ellipsis',
-                        overflow: 'hidden',
-                        whiteSpace: 'nowrap',
                         lineHeight: '22.5px',
-                        textAlign: 'center',
                         letterSpacing: '0.5px',
                         color: 'rgba(135, 135, 135, 1)',
-                        paddingBottom: '5px',
                       })}
                     >
                       {developer}
@@ -171,7 +159,7 @@ const AllGamesSelection = () => {
                 <Card.Section>
                   <Text
                     sx={(theme) => ({
-                      textAlign: 'left',
+                      textAlign: 'right',
                       fontFamily: theme.fontFamily,
                       fontSize: 12,
                       color: theme.colors.gray[5],
@@ -185,16 +173,18 @@ const AllGamesSelection = () => {
             </motion.div>
           ),
         )}
-      </Group>
+      </Stack>
       <Text
         color="rgba(255, 255, 255, 0.55)"
-        align="right"
+        component={Link}
+        to={'/games/all'}
         sx={(theme) => ({
           fontFamily: theme.fontFamily,
-          fontSize: 10,
+          fontSize: 20,
           textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
           paddingBottom: 5,
           paddingLeft: 15,
+          alignText: 'right',
         })}
       >
         See more...
