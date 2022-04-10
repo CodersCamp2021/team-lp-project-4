@@ -1,4 +1,5 @@
-import { Anchor, Grid, Image } from '@mantine/core';
+import { Image } from '@mantine/core';
+import { Link } from 'react-router-dom';
 
 type HomeGameProps = {
   id: string;
@@ -8,11 +9,9 @@ type HomeGameProps = {
 
 const HomeGame = ({ id, title, src }: HomeGameProps) => {
   return (
-    <Grid.Col span={3}>
-      <Anchor href={'https://google.com'}>
-        <Image src={src} alt={title} width={100} height={100} />
-      </Anchor>
-    </Grid.Col>
+    <Link to={`/games/${id}`}>
+      <Image src={src} alt={title} />
+    </Link>
   );
 };
 

@@ -1,45 +1,70 @@
-import { createStyles, SimpleGrid, Stack, Text, Title } from '@mantine/core';
+import { Container, createStyles, Stack, Text } from '@mantine/core';
 import HomeGames from './HomeGames';
 
 const useStyles = createStyles((theme) => ({
   homeView: {
-    padding: '10rem 10rem',
+    minHeight: '90vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '4rem',
+    [theme.fn.smallerThan('md')]: {
+      flexDirection: 'column-reverse',
+    },
   },
+  textContainer: {
+    justifyContent: 'center',
+  },
+
   title: {
-    fontFamily: 'Poppins, sans-serif',
+    fontFamily: theme.fontFamily,
     fontSize: '80px',
     fontWeight: '700',
     lineHeight: '120px',
+    color: theme.colors.white,
+    [theme.fn.smallerThan('lg')]: {
+      fontSize: '60px',
+      lineHeight: '80px',
+    },
+    [theme.fn.smallerThan('md')]: {
+      textAlign: 'center',
+    },
+    [theme.fn.smallerThan('xs')]: {
+      fontSize: '40px',
+      lineHeight: '60px',
+    },
   },
+
   subtitle: {
-    fontFamily: 'Poppins, sans-serif',
+    fontFamily: theme.fontFamily,
     fontSize: '25px',
     fontWeight: '700',
-    lineHeight: '37.5px',
+    lineHeight: '38px',
+    letterSpacing: '0.215rem',
+    color: theme.colors.grey,
+    [theme.fn.smallerThan('lg')]: {
+      fontSize: '18px',
+    },
+    [theme.fn.smallerThan('md')]: {
+      textAlign: 'center',
+    },
   },
 }));
 
 const Home = () => {
   const { classes } = useStyles();
   return (
-    <SimpleGrid
-      cols={2}
-      className={classes.homeView}
-      breakpoints={[{ maxWidth: 'md', cols: 1, spacing: 'sm' }]}
-    >
-      {/* <Title order={1}>Let them play your game.</Title> */}
-      <Stack>
-        {/* <Text> */}
-        <Title order={1} className={classes.title}>
+    <Container className={classes.homeView}>
+      <Stack className={classes.textContainer}>
+        <Text className={classes.title} color="#ffffff">
           Let them play your game.
-        </Title>
-        {/* </Text> */}
-        <Text>
-          <Title order={2}>Discover, review, enjoy yourself</Title>
+        </Text>
+        <Text className={classes.subtitle} color="#cccccc">
+          Discover, review, enjoy yourself
         </Text>
       </Stack>
       <HomeGames />
-    </SimpleGrid>
+    </Container>
   );
 };
 
