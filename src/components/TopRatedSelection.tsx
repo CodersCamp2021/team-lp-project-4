@@ -71,6 +71,7 @@ const TopRatedSelection = () => {
   return (
     <Box
       sx={{
+        height: 400,
         width: '100%',
         paddingTop: 30,
       }}
@@ -107,7 +108,6 @@ const TopRatedSelection = () => {
                 sx={(theme) => ({
                   display: 'flex',
                   flexDirection: 'row',
-                  //  justifyContent: 'space-between',
                   alignItems: 'center',
                   width: 500,
                   height: 70,
