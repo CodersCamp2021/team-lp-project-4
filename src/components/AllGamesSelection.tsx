@@ -65,7 +65,7 @@ const variants = {
   current: { scale: 1.1, originY: 1 },
 };
 
-const TopRatedSelection = () => {
+const AllGamesSelection = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
@@ -85,7 +85,7 @@ const TopRatedSelection = () => {
           paddingLeft: 15,
         })}
       >
-        Top Rated
+        All Games
       </Text>
       <Group
         spacing={10}
@@ -185,8 +185,21 @@ const TopRatedSelection = () => {
           ),
         )}
       </Group>
+      <Text
+        color="rgba(255, 255, 255, 0.55)"
+        align="right"
+        sx={(theme) => ({
+          fontFamily: theme.fontFamily,
+          fontSize: 10,
+          textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+          paddingBottom: 5,
+          paddingLeft: 15,
+        })}
+      >
+        See more...
+      </Text>
     </Box>
   );
 };
 
-export default TopRatedSelection;
+export default AllGamesSelection;

@@ -1,6 +1,7 @@
 import { Grid, Center } from '@mantine/core';
 import Recommended from './Recommended';
 import TopRatedSelection from './TopRatedSelection';
+import AllGamesSelection from './AllGamesSelection';
 
 const TopRated = () => {
   return (
@@ -45,7 +46,7 @@ const Games = () => {
         <TopRatedSelection />
       </Grid.Col>
       <Grid.Col span={6}>
-        <AllGames />
+        <AllGamesSelection />
       </Grid.Col>
     </Grid>
   );
