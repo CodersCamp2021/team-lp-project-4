@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Text, Group, Card, Image } from '@mantine/core';
+import { Box, Text, Stack, Card, Image } from '@mantine/core';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -72,7 +72,7 @@ const TopRatedSelection = () => {
     <Box
       sx={{
         height: 400,
-        width: '100%',
+        width: '540px',
         paddingTop: 30,
       }}
     >
@@ -86,9 +86,9 @@ const TopRatedSelection = () => {
           paddingLeft: 15,
         })}
       >
-        Top Rated
+        TOP RATED
       </Text>
-      <Group
+      <Stack
         spacing={10}
         sx={{
           justifyContent: 'center',
@@ -108,8 +108,8 @@ const TopRatedSelection = () => {
                 sx={(theme) => ({
                   display: 'flex',
                   flexDirection: 'row',
-                  alignItems: 'center',
-                  width: 500,
+                  width: '100%',
+                  justifyContent: 'space-between',
                   height: 70,
                   background: 'rgba(29, 23, 23, 0.9)',
                   borderRadius: theme.radius.md,
@@ -118,63 +118,60 @@ const TopRatedSelection = () => {
                 to={_id}
               >
                 <Card.Section>
-                  <Box>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      padding: '15px 15px 15px',
+                    }}
+                  >
                     <Image
                       radius="sm"
                       src={cover}
                       alt={title}
                       sx={{
                         width: 40,
-                        padding: '26px 40px 8px',
+                        paddingRight: '15px',
                       }}
                     />
-                  </Box>
-                </Card.Section>
-                <Card.Section>
-                  <Box>
-                    <Text
-                      sx={(theme) => ({
-                        width: 200,
-                        fontFamily: theme.fontFamily,
-                        fontSize: theme.fontSizes.xl,
-                        fontWeight: 50,
-                        lineHeight: '22px',
-                        letterSpacing: '0em',
-                        textAlign: 'center',
-                        color: theme.colors.gray[0],
-                      })}
-                    >
-                      {title}
-                    </Text>
-                    <Text
-                      transform="uppercase"
-                      sx={(theme) => ({
-                        width: '140px',
-                        fontFamily: theme.fontFamily,
-                        fontSize: 15,
-                        fontWeight: 600,
-                        textOverflow: 'ellipsis',
-                        overflow: 'hidden',
-                        whiteSpace: 'nowrap',
-                        lineHeight: '22.5px',
-                        textAlign: 'center',
-                        letterSpacing: '0.5px',
-                        color: 'rgba(135, 135, 135, 1)',
-                        paddingBottom: '5px',
-                      })}
-                    >
-                      {developer}
-                    </Text>
+                    <Box>
+                      <Text
+                        sx={(theme) => ({
+                          fontFamily: theme.fontFamily,
+                          fontSize: theme.fontSizes.xl,
+                          fontWeight: 50,
+                          lineHeight: '22px',
+                          letterSpacing: '0em',
+                          color: theme.colors.gray[0],
+                        })}
+                      >
+                        {title}
+                      </Text>
+                      <Text
+                        transform="uppercase"
+                        sx={(theme) => ({
+                          fontFamily: theme.fontFamily,
+                          fontSize: 15,
+                          fontWeight: 600,
+                          lineHeight: '22.5px',
+                          letterSpacing: '0.5px',
+                          color: 'rgba(135, 135, 135, 1)',
+                        })}
+                      >
+                        {developer}
+                      </Text>
+                    </Box>
                   </Box>
                 </Card.Section>
                 <Card.Section>
                   <Text
                     sx={(theme) => ({
-                      textAlign: 'left',
+                      textAlign: 'right',
                       fontFamily: theme.fontFamily,
                       fontSize: 12,
                       color: theme.colors.gray[5],
                       fontWeight: 700,
+                      paddingTop: '10px',
                     })}
                   >
                     {rating}/5 ⭐️
@@ -184,7 +181,7 @@ const TopRatedSelection = () => {
             </motion.div>
           ),
         )}
-      </Group>
+      </Stack>
     </Box>
   );
 };

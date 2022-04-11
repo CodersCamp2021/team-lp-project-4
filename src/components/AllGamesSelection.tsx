@@ -86,7 +86,7 @@ const AllGamesSelection = () => {
           paddingLeft: 15,
         })}
       >
-        All Games
+        ALL GAMES
       </Text>
       <Stack
         spacing={10}
@@ -118,42 +118,49 @@ const AllGamesSelection = () => {
                 to={_id}
               >
                 <Card.Section>
-                  <Image
-                    radius="sm"
-                    src={cover}
-                    alt={title}
+                  <Box
                     sx={{
-                      width: 40,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      padding: '15px 15px 15px',
                     }}
-                  />
-                </Card.Section>
-                <Card.Section>
-                  <Box>
-                    <Text
-                      sx={(theme) => ({
-                        fontFamily: theme.fontFamily,
-                        fontSize: theme.fontSizes.xl,
-                        fontWeight: 50,
-                        lineHeight: '22px',
-                        letterSpacing: '0em',
-                        color: theme.colors.gray[0],
-                      })}
-                    >
-                      {title}
-                    </Text>
-                    <Text
-                      transform="uppercase"
-                      sx={(theme) => ({
-                        fontFamily: theme.fontFamily,
-                        fontSize: 15,
-                        fontWeight: 600,
-                        lineHeight: '22.5px',
-                        letterSpacing: '0.5px',
-                        color: 'rgba(135, 135, 135, 1)',
-                      })}
-                    >
-                      {developer}
-                    </Text>
+                  >
+                    <Image
+                      radius="sm"
+                      src={cover}
+                      alt={title}
+                      sx={{
+                        width: 40,
+                        paddingRight: '15px',
+                      }}
+                    />
+                    <Box>
+                      <Text
+                        sx={(theme) => ({
+                          fontFamily: theme.fontFamily,
+                          fontSize: theme.fontSizes.xl,
+                          fontWeight: 50,
+                          lineHeight: '22px',
+                          letterSpacing: '0em',
+                          color: theme.colors.gray[0],
+                        })}
+                      >
+                        {title}
+                      </Text>
+                      <Text
+                        transform="uppercase"
+                        sx={(theme) => ({
+                          fontFamily: theme.fontFamily,
+                          fontSize: 15,
+                          fontWeight: 600,
+                          lineHeight: '22.5px',
+                          letterSpacing: '0.5px',
+                          color: 'rgba(135, 135, 135, 1)',
+                        })}
+                      >
+                        {developer}
+                      </Text>
+                    </Box>
                   </Box>
                 </Card.Section>
                 <Card.Section>
@@ -164,6 +171,7 @@ const AllGamesSelection = () => {
                       fontSize: 12,
                       color: theme.colors.gray[5],
                       fontWeight: 700,
+                      paddingTop: '10px',
                     })}
                   >
                     {rating}/5 ⭐️
@@ -174,21 +182,28 @@ const AllGamesSelection = () => {
           ),
         )}
       </Stack>
-      <Text
-        color="rgba(255, 255, 255, 0.55)"
-        component={Link}
-        to={'/games/all'}
-        sx={(theme) => ({
-          fontFamily: theme.fontFamily,
-          fontSize: 20,
-          textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-          paddingBottom: 5,
-          paddingLeft: 15,
-          alignText: 'right',
-        })}
+      <Box
+        sx={{
+          textAlign: 'right',
+        }}
       >
-        See more...
-      </Text>
+        <Text
+          color="rgba(255, 255, 255, 0.55)"
+          component={Link}
+          to={'/games/all'}
+          sx={(theme) => ({
+            fontFamily: theme.fontFamily,
+            fontSize: 20,
+            textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+            paddingBottom: 5,
+            paddingLeft: 15,
+            alignText: 'right',
+            width: '80%',
+          })}
+        >
+          See more...
+        </Text>
+      </Box>
     </Box>
   );
 };
