@@ -1,51 +1,26 @@
-import { Grid, Center } from '@mantine/core';
+import { Grid } from '@mantine/core';
 import Recommended from './Recommended';
 import TopRatedSelection from './TopRatedSelection';
 import AllGamesSelection from './AllGamesSelection';
 
-const TopRated = () => {
-  return (
-    <Center
-      sx={{
-        width: '40%',
-        gridColumn: 1 / 2,
-      }}
-    >
-      TopRatedSelection
-    </Center>
-  );
-};
-
-const AllGames = () => {
-  return (
-    <Center
-      sx={{
-        width: '40%',
-        gridColumn: -1,
-      }}
-    >
-      All Games
-    </Center>
-  );
-};
-
 const Games = () => {
   return (
     <Grid
+      justify="center"
       sx={{
         width: '80vw',
-        height: '80%',
-        alignItems: 'center',
         margin: '0 auto',
+        columnGap: 100,
       }}
+      columns={24}
     >
-      <Grid.Col sx={{}} span={12}>
+      <Grid.Col span={22}>
         <Recommended />
       </Grid.Col>
-      <Grid.Col span={6}>
+      <Grid.Col span={9}>
         <TopRatedSelection />
       </Grid.Col>
-      <Grid.Col span={6}>
+      <Grid.Col span={9}>
         <AllGamesSelection />
       </Grid.Col>
     </Grid>

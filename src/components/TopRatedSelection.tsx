@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Text, Stack, Card, Image } from '@mantine/core';
+import { Box, Text, Stack, Image } from '@mantine/core';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -61,123 +61,116 @@ const placeholderData = [
   },
 ];
 
-const variants = {
-  current: { scale: 1.1, originY: 1 },
-};
+const hoverAnimation = { scale: 1.03, originY: 0.5 };
 
 const TopRatedSelection = () => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hoveredTile, setHoveredTile] = useState<number | null>(null);
 
   return (
     <Box
       sx={{
-        height: 400,
-        width: '540px',
+        minWidth: 560,
         paddingTop: 30,
       }}
     >
       <Text
-        color="rgba(255, 255, 255, 0.55)"
+        color="rgba(167, 156, 184, 1)"
         sx={(theme) => ({
           fontFamily: theme.fontFamily,
           fontSize: 30,
           textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+          fontWeight: 600,
+          letterSpacing: 1,
           paddingBottom: 5,
           paddingLeft: 15,
         })}
       >
-        TOP RATED
+        TOP RATED 🔥
       </Text>
-      <Stack
-        spacing={10}
-        sx={{
-          justifyContent: 'center',
-        }}
-      >
+      <Stack spacing={10}>
         {placeholderData.map(
           ({ _id, title, cover, rating, developer }, index) => (
             <motion.div
               key={_id}
-              animate={hoveredCard === index ? 'current' : undefined}
-              variants={variants}
+              animate={hoveredTile === index ? hoverAnimation : undefined}
             >
-              <Card
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-                shadow="2px 2px 20px 0px rgba(0, 0, 0, 0.25)"
+              <Box
+                onMouseEnter={() => setHoveredTile(index)}
+                onMouseLeave={() => setHoveredTile(null)}
                 sx={(theme) => ({
                   display: 'flex',
                   flexDirection: 'row',
-                  width: '100%',
                   justifyContent: 'space-between',
+                  alignItems: 'center',
                   height: 70,
                   background: 'rgba(29, 23, 23, 0.9)',
                   borderRadius: theme.radius.md,
+                  padding: 0,
+                  boxShadow: '2px 2px 20px 0px rgba(0, 0, 0, 0.25)',
+                  textDecoration: 'none',
                 })}
                 component={Link}
                 to={_id}
               >
-                <Card.Section>
-                  <Box
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    width: 450,
+                  }}
+                >
+                  <Image
+                    radius="sm"
+                    src={cover}
+                    alt={title}
                     sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      padding: '15px 15px 15px',
+                      minWidth: 50,
+                      width: 50,
+                      paddingRight: '15px',
+                      paddingLeft: '11px',
                     }}
-                  >
-                    <Image
-                      radius="sm"
-                      src={cover}
-                      alt={title}
+                  />
+                  <Box sx={{ width: '100%' }}>
+                    <Text
                       sx={{
-                        width: 40,
-                        paddingRight: '15px',
+                        fontSize: '24px',
+                        fontWeight: 600,
+                        lineHeight: '22px',
+                        letterSpacing: 1,
+                        color: 'rgba(255, 255, 255, 1)',
                       }}
-                    />
-                    <Box>
-                      <Text
-                        sx={(theme) => ({
-                          fontFamily: theme.fontFamily,
-                          fontSize: theme.fontSizes.xl,
-                          fontWeight: 50,
-                          lineHeight: '22px',
-                          letterSpacing: '0em',
-                          color: theme.colors.gray[0],
-                        })}
-                      >
-                        {title}
-                      </Text>
-                      <Text
-                        transform="uppercase"
-                        sx={(theme) => ({
-                          fontFamily: theme.fontFamily,
-                          fontSize: 15,
-                          fontWeight: 600,
-                          lineHeight: '22.5px',
-                          letterSpacing: '0.5px',
-                          color: 'rgba(135, 135, 135, 1)',
-                        })}
-                      >
-                        {developer}
-                      </Text>
-                    </Box>
+                    >
+                      {title}
+                    </Text>
+                    <Text
+                      transform="uppercase"
+                      sx={{
+                        fontSize: '16px',
+                        fontWeight: 600,
+                        lineHeight: '24px',
+                        letterSpacing: '0.10em',
+                        color: 'rgba(135, 135, 135, 1)',
+                        textOverflow: 'ellipsis',
+                        overflow: 'hidden',
+                        whiteSpace: 'nowrap',
+                        maxWidth: '90%',
+                      }}
+                    >
+                      {developer}
+                    </Text>
                   </Box>
-                </Card.Section>
-                <Card.Section>
-                  <Text
-                    sx={(theme) => ({
-                      textAlign: 'right',
-                      fontFamily: theme.fontFamily,
-                      fontSize: 12,
-                      color: theme.colors.gray[5],
-                      fontWeight: 700,
-                      paddingTop: '10px',
-                    })}
-                  >
-                    {rating}/5 ⭐️
-                  </Text>
-                </Card.Section>
-              </Card>
+                </Box>
+                <Text
+                  sx={(theme) => ({
+                    fontSize: '18px',
+                    color: theme.colors.gray[5],
+                    fontWeight: 600,
+                    paddingRight: 15,
+                  })}
+                >
+                  {rating}/5 ⭐️
+                </Text>
+              </Box>
             </motion.div>
           ),
         )}

@@ -84,18 +84,10 @@ const Recommended = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
+    <Box>
       <Text
-        transform="uppercase"
         color="rgba(255, 255, 255, 0.55)"
-        sx={(theme) => ({
-          fontFamily: theme.fontFamily,
+        sx={{
           fontWeight: 700,
           fontSize: 100,
           textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -105,9 +97,9 @@ const Recommended = () => {
           paddingBottom: 30,
           userSelect: 'none',
           textAlign: 'center',
-        })}
+        }}
       >
-        Recommended
+        RECOMMENDED
       </Text>
       <Group
         spacing={45}
@@ -199,7 +191,7 @@ const Recommended = () => {
                       whiteSpace: 'nowrap',
                       lineHeight: '22.5px',
                       textAlign: 'center',
-                      letterSpacing: '0.5px',
+                      letterSpacing: 2,
                       color: 'rgba(135, 135, 135, 1)',
                       paddingBottom: '5px',
                     })}
