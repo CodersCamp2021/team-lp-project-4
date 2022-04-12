@@ -12,5 +12,5 @@ export type useGamesType = {
 };
 
 export const useGames = () => {
-  return useQuery<Game[], Error>('games', fetchGames, { staleTime: 3000 });
+  return useQuery<Game[], Error>('games', fetchGames);
 };
