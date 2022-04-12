@@ -6,7 +6,6 @@ import { useGames } from '../../utils/useGames';
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
 
-import Games from '../Games';
 import Home from '../Home/Home';
 
 const useStyles = createStyles((theme) => ({
