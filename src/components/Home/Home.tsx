@@ -21,7 +21,7 @@ const useStyles = createStyles((theme) => ({
     fontSize: '80px',
     fontWeight: '700',
     lineHeight: '120px',
-    color: theme.colors.white,
+    color: '#ffffff',
     [theme.fn.smallerThan('lg')]: {
       fontSize: '60px',
       lineHeight: '80px',
@@ -38,10 +38,11 @@ const useStyles = createStyles((theme) => ({
   subtitle: {
     fontFamily: theme.fontFamily,
     fontSize: '25px',
-    fontWeight: '700',
+    fontWeight: 'bold',
     lineHeight: '38px',
-    letterSpacing: '0.215rem',
-    color: theme.colors.grey,
+    letterSpacing: '6px',
+    color: '#cccccc',
+    textTransform: 'uppercase',
     [theme.fn.smallerThan('lg')]: {
       fontSize: '18px',
     },
@@ -56,11 +57,10 @@ const Home = () => {
   return (
     <Container className={classes.homeView}>
       <Stack className={classes.textContainer}>
-        <Text className={classes.title} color="#ffffff">
-          Let them play your game.
-        </Text>
-        <Text className={classes.subtitle} color="#cccccc">
-          Discover, review, enjoy yourself
+        <Text className={classes.title}>Let them play your game.</Text>
+        <Text className={classes.subtitle}>
+          Discover, review,
+          <br /> enjoy yourself
         </Text>
       </Stack>
       <HomeGames />

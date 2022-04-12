@@ -1,4 +1,4 @@
-import { Image } from '@mantine/core';
+import { Box, Image } from '@mantine/core';
 import { Link } from 'react-router-dom';
 
 type HomeGameProps = {
@@ -9,9 +9,16 @@ type HomeGameProps = {
 
 const HomeGame = ({ id, title, src }: HomeGameProps) => {
   return (
-    <Link to={`/games/${id}`}>
-      <Image src={src} alt={title} />
-    </Link>
+    <Box
+      component={Link}
+      to={`/games/${id}`}
+      sx={{
+        backgroundColor: '#1F1F1FBB',
+        borderRadius: '5px',
+      }}
+    >
+      <Image radius={3} p={5} src={src} alt={title} />
+    </Box>
   );
 };
 
