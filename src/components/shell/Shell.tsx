@@ -6,6 +6,8 @@ import { useGames } from '../../utils/useGames';
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
 
+import Home from '../Home/Home';
+
 const useStyles = createStyles((theme) => ({
   navbar: {
     [theme.fn.largerThan('sm')]: {
@@ -51,6 +53,8 @@ const Shell = () => {
     <AppShell
       fixed
       navbarOffsetBreakpoint="sm"
+      padding={0}
+      sx={{ border: 'none', overflow: 'hidden' }}
       navbar={
         <AppNavbar
           opened={opened}
@@ -68,7 +72,7 @@ const Shell = () => {
       }
     >
       <Routes>
-        <Route path="/" element={<div>home</div>} />
+        <Route path="/" element={<Home />} />
         <Route
           path="/games"
           element={

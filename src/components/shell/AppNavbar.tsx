@@ -20,6 +20,7 @@ const AppNavbar = ({
   return (
     <Navbar
       width={{ base: '100%', sm: 0 }}
+      sx={{ border: 'none' }}
       hidden={!opened}
       hiddenBreakpoint="sm"
     >
