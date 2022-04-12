@@ -17,10 +17,10 @@ const Games = () => {
       <Grid.Col span={22}>
         <Recommended />
       </Grid.Col>
-      <Grid.Col span={9}>
+      <Grid.Col xs={22} xl={9}>
         <TopRatedSelection />
       </Grid.Col>
-      <Grid.Col span={9}>
+      <Grid.Col xs={22} xl={9}>
         <AllGamesSelection />
       </Grid.Col>
     </Grid>
