@@ -4,7 +4,7 @@ import { createStyles, AppShell } from '@mantine/core';
 
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
-import Games from '../Games';
+import Games from '../games/Games';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
