@@ -38,7 +38,7 @@ const GameCard = ({ game, index, setHoveredCard }: GameProps) => {
       <Card.Section>
         <Text className={classes.cardRating}>{rating}/5 ⭐️</Text>
       </Card.Section>
-      <Card.Section>
+      <Card.Section className={classes.cardDeveloperSection}>
         <Text transform="uppercase" className={classes.cardDeveloper}>
           {developer}
         </Text>

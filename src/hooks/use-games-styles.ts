@@ -1,21 +1,73 @@
 import { createStyles } from '@mantine/core';
 
 const useGamesStyles = createStyles((theme) => ({
+  // Games
+  gamesGrid: {
+    width: '100vw',
+    margin: '0 auto',
+    columnGap: '6vw',
+  },
+
+  gamesSelection: {
+    maxWidth: '100%',
+    [theme.fn.largerThan('xl')]: {
+      maxWidth: '90%',
+    },
+  },
+
   // Recommended
   recommendedHeading: {
     fontWeight: 700,
-    fontSize: 100,
+    fontSize: '100px',
     textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     lineHeight: '100px',
-    letterSpacing: '30px',
+    letterSpacing: '2vw',
     marginRight: '-30px',
     paddingBottom: 30,
     userSelect: 'none',
     textAlign: 'center',
+    [theme.fn.smallerThan(1460)]: {
+      fontSize: '60px',
+    },
+    [theme.fn.smallerThan(1100)]: {
+      fontSize: '44px',
+    },
+    [theme.fn.smallerThan(600)]: {
+      fontSize: '36px',
+    },
+    [theme.fn.smallerThan(360)]: {
+      fontSize: '24px',
+    },
+    [theme.fn.smallerThan('md')]: {
+      paddingBottom: 10,
+    },
+    [theme.fn.smallerThan('sm')]: {
+      letterSpacing: 5,
+      paddingBottom: 0,
+    },
   },
 
   recommendedGamesWrapper: {
     justifyContent: 'center',
+    columnGap: 45,
+    [theme.fn.smallerThan(870)]: {
+      maxWidth: '70vw',
+      margin: '0 auto',
+    },
+    [theme.fn.smallerThan(670)]: {
+      maxWidth: 'unset',
+      margin: 0,
+    },
+    [theme.fn.smallerThan(1250)]: {
+      columnGap: 20,
+    },
+    [theme.fn.smallerThan('md')]: {
+      rowGap: 20,
+    },
+    [theme.fn.smallerThan('sm')]: {
+      columnGap: 15,
+      rowGap: 15,
+    },
   },
 
   gameCard: {
@@ -27,11 +79,18 @@ const useGamesStyles = createStyles((theme) => ({
     height: 220,
     background: 'rgba(29, 23, 23, 0.9)',
     borderRadius: theme.radius.md,
+    [theme.fn.smallerThan(1460)]: {
+      width: 140,
+      height: 180,
+    },
   },
 
   cardImage: {
     width: 80,
     padding: '26px 40px 8px',
+    [theme.fn.smallerThan(1460)]: {
+      padding: '26px 0 0 ',
+    },
   },
 
   cardTitle: {
@@ -43,6 +102,10 @@ const useGamesStyles = createStyles((theme) => ({
     letterSpacing: '0em',
     textAlign: 'center',
     color: theme.colors.gray[0],
+    [theme.fn.smallerThan(1460)]: {
+      fontSize: theme.fontSizes.sm,
+      lineHeight: 'unset',
+    },
   },
 
   cardRating: {
@@ -67,10 +130,18 @@ const useGamesStyles = createStyles((theme) => ({
     paddingBottom: '5px',
   },
 
+  cardDeveloperSection: {
+    [theme.fn.smallerThan(1460)]: {
+      display: 'none',
+    },
+  },
+
   // AllGames + TopRated
   selectionContainer: {
-    minWidth: 560,
     paddingTop: 30,
+    [theme.fn.smallerThan('xl')]: {
+      justifyContent: 'center',
+    },
   },
 
   headingText: {
@@ -81,6 +152,13 @@ const useGamesStyles = createStyles((theme) => ({
     letterSpacing: 1,
     paddingBottom: 5,
     paddingLeft: 15,
+    [theme.fn.smallerThan('lg')]: {
+      textAlign: 'center',
+    },
+  },
+
+  gameTilesWrapper: {
+    alignItems: 'center',
   },
 
   tileWrapper: {
@@ -94,12 +172,28 @@ const useGamesStyles = createStyles((theme) => ({
     padding: 0,
     boxShadow: '2px 2px 20px 0px rgba(0, 0, 0, 0.25)',
     textDecoration: 'none',
+    minWidth: 450,
+    [theme.fn.smallerThan('xs')]: {
+      minWidth: 300,
+    },
+    [theme.fn.largerThan('md')]: {
+      minWidth: 450,
+    },
+    [theme.fn.largerThan('lg')]: {
+      minWidth: 400,
+    },
+    [theme.fn.largerThan('xl')]: {
+      minWidth: 550,
+    },
   },
 
   gameInfoWrapper: {
     display: 'flex',
     alignItems: 'center',
     width: '80%',
+    [theme.fn.smallerThan(1620)]: {
+      width: 'unset',
+    },
   },
 
   gameImage: {
@@ -109,7 +203,9 @@ const useGamesStyles = createStyles((theme) => ({
     paddingLeft: '11px',
   },
 
-  gameTextWrapper: { width: '100%' },
+  gameTextWrapper: {
+    width: '100%',
+  },
 
   gameTitle: {
     fontSize: '24px',
@@ -117,6 +213,9 @@ const useGamesStyles = createStyles((theme) => ({
     lineHeight: '22px',
     letterSpacing: 1,
     color: 'rgba(255, 255, 255, 1)',
+    [theme.fn.smallerThan('xs')]: {
+      fontSize: '14px',
+    },
   },
 
   gameDeveloper: {
@@ -128,7 +227,11 @@ const useGamesStyles = createStyles((theme) => ({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    maxWidth: '90%',
+    maxWidth: '80%',
+
+    [theme.fn.smallerThan(1620)]: {
+      display: 'none',
+    },
   },
 
   gameRating: {
@@ -137,11 +240,21 @@ const useGamesStyles = createStyles((theme) => ({
     fontWeight: 600,
     paddingRight: 15,
     letterSpacing: 1,
+    [theme.fn.smallerThan(1620)]: {
+      paddingRight: 5,
+    },
+    [theme.fn.smallerThan('xs')]: {
+      paddingRight: 8,
+      fontSize: '12px',
+    },
   },
 
   anchorWrapper: {
     textAlign: 'right',
     paddingTop: 6,
+    [theme.fn.smallerThan('lg')]: {
+      textAlign: 'center',
+    },
   },
 
   seeMoreAnchor: {

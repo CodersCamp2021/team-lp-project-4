@@ -70,7 +70,7 @@ const AllGamesSelection = () => {
       <Text color="rgba(167, 156, 184, 1)" className={classes.headingText}>
         ALL GAMES 🎮
       </Text>
-      <Stack spacing={10}>
+      <Stack className={classes.gameTilesWrapper} spacing={10}>
         {placeholderData.map((game, index) => (
           <GameTile key={game._id} game={game} index={index} />
         ))}

@@ -94,7 +94,7 @@ const Recommended = () => {
       >
         RECOMMENDED
       </Text>
-      <Group spacing={45} className={classes.recommendedGamesWrapper}>
+      <Group className={classes.recommendedGamesWrapper}>
         {placeholderData.map((game, index) => (
           <motion.div
             key={game._id}
