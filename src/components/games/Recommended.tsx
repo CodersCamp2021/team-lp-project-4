@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Box, Text, Group, Card, Image } from '@mantine/core';
+import { Box, Text, Group } from '@mantine/core';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+
+import useGamesStyles from '../../hooks/use-games-styles';
+import GameCard from './GameCard';
 
 const placeholderData = [
   {
@@ -82,127 +84,38 @@ const variants = {
 
 const Recommended = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const { classes } = useGamesStyles();
 
   return (
     <Box>
       <Text
         color="rgba(255, 255, 255, 0.55)"
-        sx={{
-          fontWeight: 700,
-          fontSize: 100,
-          textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-          lineHeight: '100px',
-          letterSpacing: '30px',
-          marginRight: '-30px',
-          paddingBottom: 30,
-          userSelect: 'none',
-          textAlign: 'center',
-        }}
+        className={classes.recommendedHeading}
       >
         RECOMMENDED
       </Text>
-      <Group
-        spacing={45}
-        sx={{
-          justifyContent: 'center',
-        }}
-      >
-        {placeholderData.map(
-          ({ _id, title, cover, rating, developer }, index) => (
-            <motion.div
-              key={_id}
-              animate={
-                hoveredCard === index
-                  ? 'current'
-                  : hoveredCard === index - 1
-                  ? 'adjacent'
-                  : hoveredCard === index + 1
-                  ? 'adjacent'
-                  : undefined
-              }
-              variants={variants}
-            >
-              <Card
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-                shadow="2px 2px 20px 0px rgba(0, 0, 0, 0.25)"
-                sx={(theme) => ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  width: 170,
-                  height: 220,
-                  background: 'rgba(29, 23, 23, 0.9)',
-                  borderRadius: theme.radius.md,
-                })}
-                component={Link}
-                to={_id}
-              >
-                <Card.Section>
-                  <Image
-                    radius="sm"
-                    src={cover}
-                    alt={title}
-                    sx={{
-                      width: 80,
-                      padding: '26px 40px 8px',
-                    }}
-                  />
-                </Card.Section>
-                <Card.Section>
-                  <Text
-                    sx={(theme) => ({
-                      width: 132,
-                      fontFamily: theme.fontFamily,
-                      fontSize: theme.fontSizes.xl,
-                      fontWeight: 600,
-                      lineHeight: '22px',
-                      letterSpacing: '0em',
-                      textAlign: 'center',
-                      color: theme.colors.gray[0],
-                    })}
-                  >
-                    {title}
-                  </Text>
-                </Card.Section>
-                <Card.Section>
-                  <Text
-                    sx={(theme) => ({
-                      fontFamily: theme.fontFamily,
-                      fontSize: 12,
-                      color: theme.colors.gray[5],
-                      fontWeight: 700,
-                    })}
-                  >
-                    {rating}/5 ⭐️
-                  </Text>
-                </Card.Section>
-                <Card.Section>
-                  <Text
-                    transform="uppercase"
-                    sx={(theme) => ({
-                      width: '140px',
-                      fontFamily: theme.fontFamily,
-                      fontSize: 15,
-                      fontWeight: 600,
-                      textOverflow: 'ellipsis',
-                      overflow: 'hidden',
-                      whiteSpace: 'nowrap',
-                      lineHeight: '22.5px',
-                      textAlign: 'center',
-                      letterSpacing: 2,
-                      color: 'rgba(135, 135, 135, 1)',
-                      paddingBottom: '5px',
-                    })}
-                  >
-                    {developer}
-                  </Text>
-                </Card.Section>
-              </Card>
-            </motion.div>
-          ),
-        )}
+      <Group spacing={45} className={classes.recommendedGamesWrapper}>
+        {placeholderData.map((game, index) => (
+          <motion.div
+            key={game._id}
+            animate={
+              hoveredCard === index
+                ? 'current'
+                : hoveredCard === index - 1
+                ? 'adjacent'
+                : hoveredCard === index + 1
+                ? 'adjacent'
+                : undefined
+            }
+            variants={variants}
+          >
+            <GameCard
+              game={game}
+              index={index}
+              setHoveredCard={setHoveredCard}
+            />
+          </motion.div>
+        ))}
       </Group>
     </Box>
   );

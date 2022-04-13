@@ -17,10 +17,7 @@ const GameTile = ({ game, index }: GameProps) => {
   const { classes } = useGamesStyles();
 
   return (
-    <motion.div
-      key={_id}
-      animate={hoveredTile === index ? hoverAnimation : undefined}
-    >
+    <motion.div animate={hoveredTile === index ? hoverAnimation : undefined}>
       <Box
         component={Link}
         to={_id}

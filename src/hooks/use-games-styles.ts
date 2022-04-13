@@ -1,6 +1,73 @@
 import { createStyles } from '@mantine/core';
 
 const useGamesStyles = createStyles((theme) => ({
+  // Recommended
+  recommendedHeading: {
+    fontWeight: 700,
+    fontSize: 100,
+    textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+    lineHeight: '100px',
+    letterSpacing: '30px',
+    marginRight: '-30px',
+    paddingBottom: 30,
+    userSelect: 'none',
+    textAlign: 'center',
+  },
+
+  recommendedGamesWrapper: {
+    justifyContent: 'center',
+  },
+
+  gameCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: 170,
+    height: 220,
+    background: 'rgba(29, 23, 23, 0.9)',
+    borderRadius: theme.radius.md,
+  },
+
+  cardImage: {
+    width: 80,
+    padding: '26px 40px 8px',
+  },
+
+  cardTitle: {
+    width: 132,
+    fontFamily: theme.fontFamily,
+    fontSize: theme.fontSizes.xl,
+    fontWeight: 600,
+    lineHeight: '22px',
+    letterSpacing: '0em',
+    textAlign: 'center',
+    color: theme.colors.gray[0],
+  },
+
+  cardRating: {
+    fontFamily: theme.fontFamily,
+    fontSize: 12,
+    color: theme.colors.gray[5],
+    fontWeight: 700,
+  },
+
+  cardDeveloper: {
+    width: '140px',
+    fontFamily: theme.fontFamily,
+    fontSize: 15,
+    fontWeight: 600,
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    lineHeight: '22.5px',
+    textAlign: 'center',
+    letterSpacing: 2,
+    color: 'rgba(135, 135, 135, 1)',
+    paddingBottom: '5px',
+  },
+
+  // AllGames + TopRated
   selectionContainer: {
     minWidth: 560,
     paddingTop: 30,
