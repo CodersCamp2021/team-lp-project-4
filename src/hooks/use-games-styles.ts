@@ -183,7 +183,7 @@ const useGamesStyles = createStyles((theme) => ({
       minWidth: 400,
     },
     [theme.fn.largerThan('xl')]: {
-      minWidth: 550,
+      minWidth: 540,
     },
   },
 
@@ -213,6 +213,9 @@ const useGamesStyles = createStyles((theme) => ({
     lineHeight: '22px',
     letterSpacing: 1,
     color: 'rgba(255, 255, 255, 1)',
+    [theme.fn.smallerThan(1460)]: {
+      fontSize: theme.fontSizes.lg,
+    },
     [theme.fn.smallerThan('xs')]: {
       fontSize: '14px',
     },
@@ -242,6 +245,9 @@ const useGamesStyles = createStyles((theme) => ({
     letterSpacing: 1,
     [theme.fn.smallerThan(1620)]: {
       paddingRight: 5,
+    },
+    [theme.fn.smallerThan(1460)]: {
+      fontSize: theme.fontSizes.md,
     },
     [theme.fn.smallerThan('xs')]: {
       paddingRight: 8,
