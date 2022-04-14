@@ -25,7 +25,9 @@ function Input({
           letterSpacing: 4,
         },
         input: {
-          backgroundColor: '#09090A77',
+          width: '300px',
+          backgroundColor: '#09090A55',
+          border: '1px solid #09090A11',
           color: '#fcfcfc',
           letterSpacing: 1,
           fontSize: '18px',

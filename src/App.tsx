@@ -15,7 +15,7 @@ const theme: MantineThemeOverride = {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <MantineProvider theme={theme}>
+      <MantineProvider theme={theme} withNormalizeCSS withGlobalStyles>
         <Global
           styles={() => ({
             body: {
