@@ -11,7 +11,7 @@ import {
 import Input from './Input';
 
 const schema = Yup.object().shape({
-  email: Yup.string().required('Email is required!').email('Invalid email'),
+  email: Yup.string().required('Email is required!').email('Invalid email!'),
   password: Yup.string().required('Password is required!'),
 });
 
@@ -36,9 +36,9 @@ function SignIn() {
         sx={{
           letterSpacing: 25,
           fontSize: '100px',
-          color: '#A79CB8cc',
+          color: '#A79CB8',
           fontWeight: 900,
-          textShadow: '7px 5px #4c4c4c',
+          textShadow: '5px 3px #4c4c4c',
         }}
       >
         LOGIN
@@ -72,9 +72,10 @@ function SignIn() {
           }}
           {...form.getInputProps('password')}
         />
-
-        <Group position="center" mt="xl">
-          <Button type="submit">Sign in</Button>
+        <Group mt={25} position="right">
+          <Button type="submit" compact size="xl" color="violet">
+            Sign up
+          </Button>
         </Group>
       </form>
     </Stack>
