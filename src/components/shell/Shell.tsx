@@ -7,6 +7,7 @@ import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
 
 import Home from '../Home/Home';
+import SignIn from '../sign-in/SignIn';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -84,7 +85,7 @@ const Shell = () => {
             </div>
           }
         />
-        <Route path="/login" element={<div>login</div>} />
+        <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<div>register</div>} />
       </Routes>
     </AppShell>
