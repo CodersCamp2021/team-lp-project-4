@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import Shell from './components/shell/Shell';
 import background from './assets/rose-petals_1.svg';
 import { Global, MantineProvider, MantineThemeOverride } from '@mantine/core';
@@ -16,17 +17,18 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <MantineProvider theme={theme}>
         <Global
-          styles={{
+          styles={() => ({
             body: {
               margin: 0,
               backgroundImage: `url("${background}")`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
             },
-          }}
+          })}
         />
         <Shell />
       </MantineProvider>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }

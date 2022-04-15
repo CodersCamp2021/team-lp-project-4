@@ -6,6 +6,7 @@ import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
 import Games from '../games/Games';
 import AllGames from '../games/AllGames';
+import Home from '../Home/Home';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -70,7 +71,7 @@ const Shell = () => {
       }
     >
       <Routes>
-        <Route path="/" element={<div>home</div>} />
+        <Route path="/" element={<Home />} />
         <Route path="/games" element={<Games />} />
         <Route path="/games/all" element={<AllGames />} />
         <Route path="/login" element={<div>login</div>} />
