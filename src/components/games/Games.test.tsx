@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { HashRouter } from 'react-router-dom';
 import Games from './Games';
 
@@ -29,7 +30,7 @@ describe('<Games />', () => {
     expect(link).toHaveAttribute('href', '#/games/all');
   });
 
-  it('has containers with links to game pages', () => {
+  it('has containers with correct links to game pages', () => {
     render(<MockGames />);
 
     const tiles: GameContainers = screen.getAllByTestId(/^gameDiv/i);
@@ -38,6 +39,18 @@ describe('<Games />', () => {
         'href',
         `#/${tile.dataset.testid.substring(7)}`,
       );
+    });
+  });
+
+  it('changes URL after clicking game box link', () => {
+    render(<MockGames />);
+
+    type Links = Array<HTMLAnchorElement>;
+
+    const links: Links = screen.getAllByRole('link');
+    links.forEach((link) => {
+      userEvent.click(link);
+      expect(window.location.hash).toBe(link.hash);
     });
   });
 });
