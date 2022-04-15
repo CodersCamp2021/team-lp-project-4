@@ -24,6 +24,7 @@ const GameTile = ({ game, index }: GameProps) => {
         onMouseEnter={() => setHoveredTile(index)}
         onMouseLeave={() => setHoveredTile(null)}
         className={classes.tileWrapper}
+        data-testid={`gameDiv${_id}`}
       >
         <Box className={classes.gameInfoWrapper}>
           <Image

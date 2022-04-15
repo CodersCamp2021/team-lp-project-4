@@ -66,7 +66,7 @@ const AllGamesSelection = () => {
   const { classes } = useGamesStyles();
 
   return (
-    <Box className={classes.selectionContainer}>
+    <Box className={classes.selectionContainer} data-testid="allGames">
       <Text color="rgba(167, 156, 184, 1)" className={classes.headingText}>
         ALL GAMES 🎮
       </Text>
@@ -80,6 +80,7 @@ const AllGamesSelection = () => {
           component={Link}
           to={'/games/all'}
           className={classes.seeMoreAnchor}
+          data-testid="moreGamesLink"
         >
           SEE MORE ...
         </Text>

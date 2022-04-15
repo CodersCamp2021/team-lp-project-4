@@ -23,6 +23,7 @@ const GameCard = ({ game, index, setHoveredCard }: GameProps) => {
       onMouseLeave={() => setHoveredCard(null)}
       shadow="2px 2px 20px 0px rgba(0, 0, 0, 0.25)"
       className={classes.gameCard}
+      data-testid={`gameDiv${_id}`}
     >
       <Card.Section>
         <Image
