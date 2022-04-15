@@ -21,6 +21,7 @@ const GameTile = ({ game, index }: TileProps) => {
       animate={hoveredTile === index ? hoverAnimation : undefined}
       onHoverStart={() => setHoveredTile(index)}
       onHoverEnd={() => setHoveredTile(null)}
+      style={{ width: '100%' }}
     >
       <Box
         component={Link}

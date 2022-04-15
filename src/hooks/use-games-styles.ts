@@ -166,24 +166,17 @@ const useGamesStyles = createStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: '0px',
     height: 70,
     background: 'rgba(29, 23, 23, 0.9)',
     borderRadius: theme.radius.md,
     padding: 0,
     boxShadow: '2px 2px 20px 0px rgba(0, 0, 0, 0.25)',
     textDecoration: 'none',
-    minWidth: 450,
-    [theme.fn.smallerThan('xs')]: {
-      minWidth: 300,
-    },
-    [theme.fn.largerThan('md')]: {
-      minWidth: 450,
-    },
-    [theme.fn.largerThan('lg')]: {
-      minWidth: 400,
-    },
-    [theme.fn.largerThan('xl')]: {
-      minWidth: 540,
+    width: '100%',
+    [theme.fn.smallerThan('lg')]: {
+      maxWidth: 500,
+      margin: 'auto',
     },
   },
 
@@ -191,9 +184,6 @@ const useGamesStyles = createStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     width: '80%',
-    [theme.fn.smallerThan(1620)]: {
-      width: 'unset',
-    },
   },
 
   gameImage: {
@@ -204,7 +194,7 @@ const useGamesStyles = createStyles((theme) => ({
   },
 
   gameTextWrapper: {
-    width: '100%',
+    width: '90%',
   },
 
   gameTitle: {
@@ -214,7 +204,7 @@ const useGamesStyles = createStyles((theme) => ({
     letterSpacing: 1,
     color: 'rgba(255, 255, 255, 1)',
     [theme.fn.smallerThan(1460)]: {
-      fontSize: theme.fontSizes.lg,
+      fontSize: '18px',
     },
     [theme.fn.smallerThan('xs')]: {
       fontSize: '14px',
@@ -232,8 +222,11 @@ const useGamesStyles = createStyles((theme) => ({
     whiteSpace: 'nowrap',
     maxWidth: '80%',
 
-    [theme.fn.smallerThan(1620)]: {
-      display: 'none',
+    [theme.fn.smallerThan(1460)]: {
+      fontSize: '14px',
+    },
+    [theme.fn.smallerThan('xs')]: {
+      fontSize: '10px',
     },
   },
 
@@ -243,6 +236,7 @@ const useGamesStyles = createStyles((theme) => ({
     fontWeight: 600,
     paddingRight: 15,
     letterSpacing: 1,
+    whiteSpace: 'nowrap',
     [theme.fn.smallerThan(1620)]: {
       paddingRight: 5,
     },
