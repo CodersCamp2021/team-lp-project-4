@@ -106,6 +106,8 @@ const Recommended = () => {
         {placeholderData.map((game, index) => (
           <motion.div
             key={game._id}
+            onHoverStart={() => setHoveredCard(index)}
+            onHoverEnd={() => setHoveredCard(null)}
             animate={
               hoveredCard === index
                 ? 'current'
@@ -119,11 +121,7 @@ const Recommended = () => {
             }
             variants={mediumScreen ? variantsSmall : variantsLarge}
           >
-            <GameCard
-              game={game}
-              index={index}
-              setHoveredCard={setHoveredCard}
-            />
+            <GameCard game={game} />
           </motion.div>
         ))}
       </Group>

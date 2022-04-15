@@ -6,23 +6,25 @@ import { Link } from 'react-router-dom';
 import { Game } from '../../interfaces/Games';
 import useGamesStyles from '../../hooks/use-games-styles';
 
-type GameProps = { game: Game; index: number };
+type TileProps = { game: Game; index: number };
 
 const hoverAnimation = { scale: 1.03, originY: 0.5 };
 
-const GameTile = ({ game, index }: GameProps) => {
+const GameTile = ({ game, index }: TileProps) => {
   const [hoveredTile, setHoveredTile] = useState<number | null>(null);
   const { _id, title, cover, rating, developer } = game;
 
   const { classes } = useGamesStyles();
 
   return (
-    <motion.div animate={hoveredTile === index ? hoverAnimation : undefined}>
+    <motion.div
+      animate={hoveredTile === index ? hoverAnimation : undefined}
+      onHoverStart={() => setHoveredTile(index)}
+      onHoverEnd={() => setHoveredTile(null)}
+    >
       <Box
         component={Link}
         to={_id}
-        onMouseEnter={() => setHoveredTile(index)}
-        onMouseLeave={() => setHoveredTile(null)}
         className={classes.tileWrapper}
         data-testid={`gameDiv${_id}`}
       >
