@@ -2,7 +2,6 @@ import {
   Container,
   createStyles,
   Loader,
-  LoadingOverlay,
   SimpleGrid,
   Text,
 } from '@mantine/core';
