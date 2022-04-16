@@ -1,33 +1,13 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { createStyles, AppShell } from '@mantine/core';
+import { AppShell } from '@mantine/core';
 
-import AppHeader from './AppHeader';
-import AppNavbar from './AppNavbar';
+import useShellStyles from '../../hooks/use-shell-styles';
 import Games from '../games/Games';
 import AllGames from '../games/AllGames';
 import Home from '../Home/Home';
-
-const useStyles = createStyles((theme) => ({
-  navbar: {
-    [theme.fn.largerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  links: {
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  header: {
-    [theme.fn.smallerThan('sm')]: {
-      paddingLeft: '5%',
-      paddingRight: '5%',
-    },
-  },
-}));
+import AppHeader from './AppHeader';
+import AppNavbar from './AppNavbar';
 
 const endpoints = [
   {
@@ -46,7 +26,7 @@ const endpoints = [
 
 const Shell = () => {
   const [opened, setOpened] = useState(false);
-  const { classes } = useStyles();
+  const { classes } = useShellStyles();
 
   return (
     <AppShell
