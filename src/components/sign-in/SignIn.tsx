@@ -15,6 +15,19 @@ const schema = Yup.object().shape({
   password: Yup.string().required('Password is required!'),
 });
 
+function loggin({ email, password }: { email: string; password: string }) {
+  return fetch('https://team-lp-project-3.herokuapp.com/user/login', {
+    method: 'POST',
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
+}
+
 function SignIn() {
   const form = useForm({
     schema: yupResolver(schema),
@@ -34,16 +47,18 @@ function SignIn() {
     >
       <Text
         sx={{
-          letterSpacing: 25,
-          fontSize: '100px',
+          marginTop: 50,
+          marginBottom: 20,
+          letterSpacing: 15,
+          fontSize: '40px',
           color: '#A79CB8',
           fontWeight: 900,
-          textShadow: '5px 3px #4c4c4c',
+          textShadow: '1px 2px #555',
         }}
       >
         LOGIN
       </Text>
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((val) => console.log(val))}>
         <Input
           label="Email"
           placeholder="example@mail.com"
@@ -64,16 +79,29 @@ function SignIn() {
             },
             input: {
               backgroundColor: '#09090A55',
-              color: 'white',
-              letterSpacing: 5,
-              fontSize: '18px',
               border: '1px solid #09090A11',
+            },
+            innerInput: {
+              color: '#fcfcfc',
+              letterSpacing: 1,
+              fontSize: '18px',
             },
           }}
           {...form.getInputProps('password')}
         />
         <Group mt={25} position="right">
-          <Button type="submit" compact size="xl" color="violet">
+          <Button
+            type="submit"
+            compact
+            size="xl"
+            sx={{
+              color: 'black',
+              background: '#fcfcfc',
+              mixBlendMode: 'screen',
+              '&:before': { position: 'absolute', mixBlendMode: 'color-burn' },
+              '&:hover': { background: '#777' },
+            }}
+          >
             Sign up
           </Button>
         </Group>
