@@ -23,6 +23,9 @@ const GameCard = ({ game }: CardProps) => {
       <Card.Section>
         <Image
           radius="sm"
+          fit="cover"
+          width={80}
+          height={80}
           src={cover}
           alt={title}
           className={classes.cardImage}

@@ -136,11 +136,28 @@ const useGamesStyles = createStyles((theme) => ({
     },
   },
 
+  loadingContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 220,
+    [theme.fn.smallerThan(1460)]: {
+      width: 140,
+      height: 180,
+    },
+  },
+
   // AllGames + TopRated
   selectionContainer: {
     paddingTop: 30,
+    width: 540,
     [theme.fn.smallerThan('xl')]: {
       justifyContent: 'center',
+      width: 400,
+    },
+    [theme.fn.smallerThan('lg')]: {
+      width: '100%',
     },
   },
 
@@ -202,7 +219,12 @@ const useGamesStyles = createStyles((theme) => ({
     fontWeight: 600,
     lineHeight: '22px',
     letterSpacing: 1,
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
     color: 'rgba(255, 255, 255, 1)',
+    maxWidth: '95%',
+    paddingBottom: 5,
     [theme.fn.smallerThan(1460)]: {
       fontSize: '18px',
     },

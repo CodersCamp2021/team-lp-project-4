@@ -31,6 +31,9 @@ const GameTile = ({ game, index }: TileProps) => {
       >
         <Box className={classes.gameInfoWrapper}>
           <Image
+            fit="cover"
+            width={50}
+            height={50}
             radius="sm"
             src={cover}
             alt={title}
