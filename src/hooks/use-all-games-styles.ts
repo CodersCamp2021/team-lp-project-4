@@ -24,7 +24,7 @@ const useAllGamesStyles = createStyles((theme) => ({
     lineHeight: '60px',
     letterSpacing: 1,
     paddingBottom: 20,
-    paddingLeft: 15,
+    paddingLeft: 35,
     color: 'rgba(167, 156, 184, 1)',
     [theme.fn.smallerThan(400)]: {
       fontSize: '35px',

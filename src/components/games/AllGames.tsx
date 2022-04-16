@@ -1,4 +1,4 @@
-import { Container, Loader, SimpleGrid, Text } from '@mantine/core';
+import { Container, Loader, ScrollArea, SimpleGrid, Text } from '@mantine/core';
 import { useGames } from '../../hooks/use-games';
 import useAllGamesStyles from '../../hooks/use-all-games-styles';
 import GameTile from './GameTile';
@@ -17,14 +17,17 @@ const AllGames = () => {
     );
   } else {
     content = (
-      <SimpleGrid
-        cols={2}
-        breakpoints={[{ maxWidth: 1024, cols: 1, spacing: 'md' }]}
-      >
-        {data.map((game, index) => (
-          <GameTile key={game._id} game={game} index={index} />
-        ))}
-      </SimpleGrid>
+      <ScrollArea type="always" style={{ height: '60vh' }}>
+        <SimpleGrid
+          cols={2}
+          breakpoints={[{ maxWidth: 1024, cols: 1, spacing: 'md' }]}
+          sx={{ padding: '0 20px' }}
+        >
+          {data.map((game, index) => (
+            <GameTile key={game._id} game={game} index={index} />
+          ))}
+        </SimpleGrid>
+      </ScrollArea>
     );
   }
 
