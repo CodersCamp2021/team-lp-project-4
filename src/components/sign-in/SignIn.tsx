@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import * as Yup from 'yup';
 import { useForm, yupResolver } from '@mantine/form';
 import {
@@ -26,13 +27,10 @@ const loggin = async ({
     'https://team-lp-project-3.herokuapp.com/user/login',
     {
       method: 'POST',
-      body: JSON.stringify({
-        email,
-        password,
-      }),
+      body: JSON.stringify({ email, password }),
     },
   );
-  const data = res.json();
+  const data = (await res.json()) as Record<string, unknown>;
   console.log(data);
 };
 
@@ -66,7 +64,7 @@ function SignIn() {
       >
         LOGIN
       </Text>
-      <form onSubmit={form.onSubmit((val) => console.log(val))}>
+      <form onSubmit={form.onSubmit((values) => loggin(values))}>
         <Input
           label="Email"
           placeholder="example@mail.com"
