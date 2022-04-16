@@ -15,18 +15,26 @@ const schema = Yup.object().shape({
   password: Yup.string().required('Password is required!'),
 });
 
-function loggin({ email, password }: { email: string; password: string }) {
-  return fetch('https://team-lp-project-3.herokuapp.com/user/login', {
-    method: 'POST',
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err));
-}
+const loggin = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
+  const res = await fetch(
+    'https://team-lp-project-3.herokuapp.com/user/login',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    },
+  );
+  const data = res.json();
+  console.log(data);
+};
 
 function SignIn() {
   const form = useForm({
