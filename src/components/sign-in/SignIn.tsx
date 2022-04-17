@@ -28,6 +28,10 @@ const loggin = async ({
     {
       method: 'POST',
       body: JSON.stringify({ email, password }),
+      mode: 'cors',
+      headers: {
+        'content-type': 'application/json',
+      },
     },
   );
   const data = (await res.json()) as Record<string, unknown>;
