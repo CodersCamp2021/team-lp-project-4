@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { createStyles, AppShell, Text } from '@mantine/core';
+import { createStyles, AppShell, Text, Footer } from '@mantine/core';
 import { useGames } from '../../utils/useGames';
 
 import AppHeader from './AppHeader';
@@ -69,6 +69,24 @@ const Shell = () => {
           classes={classes}
           setOpenedCallback={setOpened}
         ></AppHeader>
+      }
+      footer={
+        <Footer
+          height={40}
+          sx={{
+            position: 'static',
+            color: 'rgba(83, 56, 139, 1)',
+            background: 'none',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            paddingRight: '20px',
+            border: 'none',
+            fontSize: '20px',
+          }}
+        >
+          CodersCamp © team-lp-4 | All CopyRights Reserved
+        </Footer>
       }
     >
       <Routes>
