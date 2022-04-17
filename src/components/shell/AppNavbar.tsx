@@ -1,5 +1,6 @@
 import { Navbar, Anchor, Stack } from '@mantine/core';
 import { Link } from 'react-router-dom';
+import background from '../../assets/rose-petals_1.svg';
 
 type AppNavbarProps = {
   opened: boolean;
@@ -20,7 +21,12 @@ const AppNavbar = ({
   return (
     <Navbar
       width={{ base: '100%', sm: 0 }}
-      sx={{ border: 'none' }}
+      sx={{
+        border: 'none',
+        backgroundImage: `url("${background}")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      }}
       hidden={!opened}
       hiddenBreakpoint="sm"
     >
@@ -39,9 +45,9 @@ const AppNavbar = ({
             align="center"
             size="xl"
             weight={500}
-            color="violet"
             sx={{
               fontSize: '28px',
+              color: '#ffffff',
             }}
             onClick={() => setOpened(false)}
           >
