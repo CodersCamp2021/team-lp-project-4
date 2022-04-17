@@ -1,7 +1,40 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HashRouter } from 'react-router-dom';
+import { QueryClientProvider, QueryClient, setLogger } from 'react-query';
+
 import Games from './Games';
+
+setLogger({
+  log: console.log,
+  warn: console.warn,
+  // eslint-disable-next-line
+  error: () => {},
+});
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      cacheTime: Infinity,
+    },
+  },
+});
+
+const renderWithClient = (ui: React.ReactElement) => {
+  const { rerender, ...result } = render(
+    <QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>,
+  );
+  return {
+    ...result,
+    rerender: (rerenderUi: React.ReactElement) =>
+      rerender(
+        <QueryClientProvider client={queryClient}>
+          {rerenderUi}
+        </QueryClientProvider>,
+      ),
+  };
+};
 
 const MockGames = () => (
   <HashRouter>
@@ -13,7 +46,7 @@ describe('<Games />', () => {
   type GameContainers = Array<HTMLElement & { dataset: { testid: string } }>;
 
   it('displays Recommended, TopRated and AllGames sections', () => {
-    render(<MockGames />);
+    renderWithClient(<MockGames />);
 
     const recommended = screen.getByText(/recommended/i);
     const topRated = screen.getByText(/top rated/i);
@@ -25,15 +58,15 @@ describe('<Games />', () => {
   });
 
   it('has a link to allGames', () => {
-    render(<MockGames />);
+    renderWithClient(<MockGames />);
     const link = screen.getByTestId('moreGamesLink');
     expect(link).toHaveAttribute('href', '#/games/all');
   });
 
-  it('has containers with correct links to game pages', () => {
-    render(<MockGames />);
+  it('has containers with correct links to game pages', async () => {
+    renderWithClient(<MockGames />);
 
-    const tiles: GameContainers = screen.getAllByTestId(/^gameDiv/i);
+    const tiles: GameContainers = await screen.findAllByTestId(/^gameDiv/i);
     tiles.forEach((tile) => {
       expect(tile).toHaveAttribute(
         'href',
@@ -43,7 +76,7 @@ describe('<Games />', () => {
   });
 
   it('changes URL after clicking game box link', () => {
-    render(<MockGames />);
+    renderWithClient(<MockGames />);
 
     type Links = Array<HTMLAnchorElement>;
 
