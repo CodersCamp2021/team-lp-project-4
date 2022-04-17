@@ -32,7 +32,9 @@ const GameCard = ({ game }: CardProps) => {
         />
       </Card.Section>
       <Card.Section>
-        <Text className={classes.cardTitle}>{title}</Text>
+        <Text lineClamp={2} className={classes.cardTitle}>
+          {title}
+        </Text>
       </Card.Section>
       <Card.Section>
         <Text className={classes.cardRating}>{rating}/5 ⭐️</Text>

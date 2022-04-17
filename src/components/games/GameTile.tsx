@@ -40,8 +40,14 @@ const GameTile = ({ game, index }: TileProps) => {
             className={classes.gameImage}
           />
           <Box className={classes.gameTextWrapper}>
-            <Text className={classes.gameTitle}>{title}</Text>
-            <Text transform="uppercase" className={classes.gameDeveloper}>
+            <Text lineClamp={1} className={classes.gameTitle}>
+              {title}
+            </Text>
+            <Text
+              lineClamp={1}
+              transform="uppercase"
+              className={classes.gameDeveloper}
+            >
               {developer}
             </Text>
           </Box>

@@ -211,7 +211,7 @@ const useGamesStyles = createStyles((theme) => ({
   },
 
   gameTextWrapper: {
-    width: '90%',
+    width: '100%',
   },
 
   gameTitle: {
@@ -219,12 +219,8 @@ const useGamesStyles = createStyles((theme) => ({
     fontWeight: 600,
     lineHeight: '22px',
     letterSpacing: 1,
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
     color: 'rgba(255, 255, 255, 1)',
     maxWidth: '95%',
-    paddingBottom: 5,
     [theme.fn.smallerThan(1460)]: {
       fontSize: '18px',
     },
@@ -239,10 +235,7 @@ const useGamesStyles = createStyles((theme) => ({
     lineHeight: '24px',
     letterSpacing: '0.10em',
     color: 'rgba(135, 135, 135, 1)',
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    maxWidth: '80%',
+    maxWidth: '95%',
 
     [theme.fn.smallerThan(1460)]: {
       fontSize: '14px',
