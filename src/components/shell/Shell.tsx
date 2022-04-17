@@ -10,6 +10,7 @@ import Home from '../Home/Home';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
+    position: 'absolute',
     [theme.fn.largerThan('sm')]: {
       display: 'none',
     },
@@ -22,6 +23,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   header: {
+    position: 'absolute',
     [theme.fn.smallerThan('sm')]: {
       paddingLeft: '5%',
       paddingRight: '5%',
