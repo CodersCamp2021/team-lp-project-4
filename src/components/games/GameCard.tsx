@@ -9,7 +9,7 @@ type CardProps = {
 };
 
 const GameCard = ({ game }: CardProps) => {
-  const { _id, title, cover, rating, developer } = game;
+  const { _id, title, cover, developer, ratings } = game;
   const { classes } = useGamesStyles();
 
   return (
@@ -37,7 +37,9 @@ const GameCard = ({ game }: CardProps) => {
         </Text>
       </Card.Section>
       <Card.Section>
-        <Text className={classes.cardRating}>{rating}/5 ⭐️</Text>
+        <Text className={classes.cardRating}>
+          {ratings[0]?.stars || 0}/5 ⭐️
+        </Text>
       </Card.Section>
       <Card.Section className={classes.cardDeveloperSection}>
         <Text transform="uppercase" className={classes.cardDeveloper}>

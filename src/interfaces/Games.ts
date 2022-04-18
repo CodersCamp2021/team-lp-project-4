@@ -9,5 +9,11 @@ export interface Game {
   cover: string;
   rating: number;
   ratedBy: string[];
+  ratings: {
+    _id: string;
+    likes: number;
+    dislikes: number;
+    stars: number;
+  }[];
   __v: number;
 }

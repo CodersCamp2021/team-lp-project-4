@@ -12,7 +12,7 @@ const hoverAnimation = { scale: 1.03, originY: 0.5 };
 
 const GameTile = ({ game, index }: TileProps) => {
   const [hoveredTile, setHoveredTile] = useState<number | null>(null);
-  const { _id, title, cover, rating, developer } = game;
+  const { _id, title, cover, developer, ratings } = game;
 
   const { classes } = useGamesStyles();
 
@@ -52,7 +52,9 @@ const GameTile = ({ game, index }: TileProps) => {
             </Text>
           </Box>
         </Box>
-        <Text className={classes.gameRating}>{rating}/5 ⭐️</Text>
+        <Text className={classes.gameRating}>
+          {ratings[0]?.stars || 0}/5 ⭐️
+        </Text>
       </Box>
     </motion.div>
   );
