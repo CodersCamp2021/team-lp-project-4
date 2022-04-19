@@ -35,7 +35,7 @@ const GameTile = ({ game, index }: TileProps) => {
             width={50}
             height={50}
             radius="sm"
-            src={cover}
+            src={cover.thumb}
             alt={title}
             className={classes.gameImage}
           />
@@ -53,7 +53,7 @@ const GameTile = ({ game, index }: TileProps) => {
           </Box>
         </Box>
         <Text className={classes.gameRating}>
-          {ratings[0]?.stars || 0}/5 ⭐️
+          {ratings?.length > 0 ? ratings[0]?.stars : 0}/5 ⭐️
         </Text>
       </Box>
     </motion.div>

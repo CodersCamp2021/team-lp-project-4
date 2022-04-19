@@ -26,7 +26,7 @@ const GameCard = ({ game }: CardProps) => {
           fit="cover"
           width={80}
           height={80}
-          src={cover}
+          src={cover.thumb}
           alt={title}
           className={classes.cardImage}
         />
@@ -38,7 +38,7 @@ const GameCard = ({ game }: CardProps) => {
       </Card.Section>
       <Card.Section>
         <Text className={classes.cardRating}>
-          {ratings[0]?.stars || 0}/5 ⭐️
+          {ratings?.length > 0 ? ratings[0]?.stars : 0}/5 ⭐️
         </Text>
       </Card.Section>
       <Card.Section className={classes.cardDeveloperSection}>
