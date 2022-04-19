@@ -53,7 +53,7 @@ const GameTile = ({ game, index }: TileProps) => {
           </Box>
         </Box>
         <Text className={classes.gameRating}>
-          {ratings?.length > 0 ? ratings[0]?.stars : 0}/5 ⭐️
+          {ratings?.length > 0 ? ratings[0]?.stars.toFixed(1) : 0}/5 ⭐️
         </Text>
       </Box>
     </motion.div>

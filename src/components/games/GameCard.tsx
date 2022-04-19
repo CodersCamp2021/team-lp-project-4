@@ -38,7 +38,7 @@ const GameCard = ({ game }: CardProps) => {
       </Card.Section>
       <Card.Section>
         <Text className={classes.cardRating}>
-          {ratings?.length > 0 ? ratings[0]?.stars : 0}/5 ⭐️
+          {ratings?.length > 0 ? ratings[0]?.stars.toFixed(1) : 0}/5 ⭐️
         </Text>
       </Card.Section>
       <Card.Section className={classes.cardDeveloperSection}>
