@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import * as Yup from 'yup';
 import { useForm, yupResolver } from '@mantine/form';
 import {
@@ -16,6 +15,19 @@ const schema = Yup.object().shape({
   password: Yup.string().required('Password is required!'),
 });
 
+type Response = {
+  id: string;
+};
+
+const fetchData = <T extends object>(
+  url: string,
+  resBody?: RequestInit | undefined,
+): Promise<T> => {
+  return fetch(url, resBody)
+    .then((response) => response.json())
+    .catch((err) => console.error(err)) as Promise<T>;
+};
+
 const loggin = async ({
   email,
   password,
@@ -23,19 +35,21 @@ const loggin = async ({
   email: string;
   password: string;
 }) => {
-  const res = await fetch(
-    'https://team-lp-project-3.herokuapp.com/user/login',
+  await fetchData<Response>(
+    'http://team-lp-project-3.herokuapp.com/user/login',
     {
       method: 'POST',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({
+        email,
+        password,
+      }),
       mode: 'cors',
+      credentials: 'include',
       headers: {
         'content-type': 'application/json',
       },
     },
   );
-  const data = (await res.json()) as Record<string, unknown>;
-  console.log(data);
 };
 
 function SignIn() {
@@ -46,6 +60,12 @@ function SignIn() {
       password: '',
     },
   });
+
+  const handleSubmit = (values: typeof form.values): void => {
+    loggin(values)
+      .then((response) => response)
+      .catch((err) => console.error(err));
+  };
 
   return (
     <Stack
@@ -68,7 +88,7 @@ function SignIn() {
       >
         LOGIN
       </Text>
-      <form onSubmit={form.onSubmit((values) => loggin(values))}>
+      <form onSubmit={form.onSubmit(handleSubmit)}>
         <Input
           label="Email"
           placeholder="example@mail.com"
