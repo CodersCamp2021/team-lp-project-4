@@ -1,14 +1,8 @@
 import * as Yup from 'yup';
 import { useForm, yupResolver } from '@mantine/form';
-import {
-  Button,
-  Group,
-  PasswordInput,
-  Space,
-  Stack,
-  Text,
-} from '@mantine/core';
+import { Box, Button, PasswordInput, Space, Stack, Text } from '@mantine/core';
 import Input from './Input';
+import { useState } from 'react';
 
 const schema = Yup.object().shape({
   email: Yup.string().required('Email is required!').email('Invalid email!'),
@@ -16,7 +10,8 @@ const schema = Yup.object().shape({
 });
 
 type Response = {
-  id: string;
+  message?: string;
+  error?: string;
 };
 
 const fetchData = <T extends object>(
@@ -28,31 +23,8 @@ const fetchData = <T extends object>(
     .catch((err) => console.error(err)) as Promise<T>;
 };
 
-const loggin = async ({
-  email,
-  password,
-}: {
-  email: string;
-  password: string;
-}) => {
-  await fetchData<Response>(
-    'http://team-lp-project-3.herokuapp.com/user/login',
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'content-type': 'application/json',
-      },
-    },
-  );
-};
-
 function SignIn() {
+  const [response, setResponse] = useState<Response>({});
   const form = useForm({
     schema: yupResolver(schema),
     initialValues: {
@@ -61,9 +33,35 @@ function SignIn() {
     },
   });
 
+  const loggin = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    const data = await fetchData<Response>(
+      'http://team-lp-project-3.herokuapp.com/user/login',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'content-type': 'application/json',
+        },
+      },
+    );
+    console.log(data);
+    setResponse(data);
+  };
+
   const handleSubmit = (values: typeof form.values): void => {
     loggin(values)
-      .then((response) => response)
+      .then((res) => res)
       .catch((err) => console.error(err));
   };
 
@@ -119,7 +117,22 @@ function SignIn() {
           }}
           {...form.getInputProps('password')}
         />
-        <Group mt={25} position="right">
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            height: '100px',
+            maxWidth: '300px',
+          }}
+        >
+          {response.error ? (
+            <Text sx={{ color: 'white', paddingLeft: 10 }}>
+              {response.error}
+            </Text>
+          ) : (
+            <></>
+          )}
           <Button
             type="submit"
             compact
@@ -134,7 +147,7 @@ function SignIn() {
           >
             Sign up
           </Button>
-        </Group>
+        </Box>
       </form>
     </Stack>
   );
