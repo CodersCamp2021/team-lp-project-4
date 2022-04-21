@@ -1,27 +1,14 @@
 import * as Yup from 'yup';
 import { useForm, yupResolver } from '@mantine/form';
 import { Box, Button, PasswordInput, Space, Stack, Text } from '@mantine/core';
-import Input from './Input';
 import { useState } from 'react';
+import { fetchData, Response } from '../../utils/fetchData';
+import Input from './Input';
 
 const schema = Yup.object().shape({
   email: Yup.string().required('Email is required!').email('Invalid email!'),
   password: Yup.string().required('Password is required!'),
 });
-
-type Response = {
-  message?: string;
-  error?: string;
-};
-
-const fetchData = <T extends object>(
-  url: string,
-  resBody?: RequestInit | undefined,
-): Promise<T> => {
-  return fetch(url, resBody)
-    .then((response) => response.json())
-    .catch((err) => console.error(err)) as Promise<T>;
-};
 
 function SignIn() {
   const [response, setResponse] = useState<Response>({});
