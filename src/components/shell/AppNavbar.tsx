@@ -36,6 +36,7 @@ const AppNavbar = ({
         align={'center'}
         justify={'center'}
         p={20}
+        sx={{ width: '100%' }}
       >
         {endpoints.map(({ name, endpoint }) => (
           <Anchor
