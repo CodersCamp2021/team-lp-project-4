@@ -3,7 +3,6 @@ import HomeGames from './HomeGames';
 
 const useStyles = createStyles((theme) => ({
   homeView: {
-    minHeight: '90vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

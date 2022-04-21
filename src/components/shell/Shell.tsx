@@ -51,10 +51,14 @@ const Shell = () => {
 
   return (
     <AppShell
-      fixed
       navbarOffsetBreakpoint="sm"
       padding={0}
       sx={{ border: 'none', overflow: 'hidden' }}
+      styles={() => ({
+        main: {
+          display: 'flex',
+        },
+      })}
       navbar={
         <AppNavbar
           opened={opened}
@@ -75,7 +79,7 @@ const Shell = () => {
           height={40}
           sx={{
             position: 'static',
-            color: 'rgba(83, 56, 139, 1)',
+            color: 'rgba(255,255,255,0.15)',
             background: 'none',
             display: 'flex',
             justifyContent: 'flex-end',
