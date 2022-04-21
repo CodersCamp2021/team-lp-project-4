@@ -23,6 +23,7 @@ function App() {
               backgroundImage: `url("${background}")`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
+              minHeight: '100vh',
             },
           })}
         />

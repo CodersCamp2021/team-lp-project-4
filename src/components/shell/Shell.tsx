@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { createStyles, AppShell, Text } from '@mantine/core';
+import { createStyles, AppShell, Text, Footer } from '@mantine/core';
 import { useGames } from '../../utils/useGames';
 
 import AppHeader from './AppHeader';
@@ -51,12 +51,27 @@ const Shell = () => {
   const { classes } = useStyles();
   const { data, status } = useGames();
 
+  useEffect(() => {
+    document.body.style.overflow = opened ? 'hidden' : 'auto';
+  }, [opened]);
+
   return (
     <AppShell
-      fixed
       navbarOffsetBreakpoint="sm"
       padding={0}
-      sx={{ border: 'none', overflow: 'hidden' }}
+      sx={{
+        border: 'none',
+        overflow: 'hidden',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+      styles={() => ({
+        body: { flexGrow: '2' },
+        main: {
+          display: 'flex',
+        },
+      })}
       navbar={
         <AppNavbar
           opened={opened}
@@ -71,6 +86,24 @@ const Shell = () => {
           classes={classes}
           setOpenedCallback={setOpened}
         ></AppHeader>
+      }
+      footer={
+        <Footer
+          height={40}
+          sx={{
+            position: 'static',
+            color: 'rgba(255,255,255,0.15)',
+            background: 'none',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            paddingRight: '20px',
+            border: 'none',
+            fontSize: '20px',
+          }}
+        >
+          CodersCamp © team-lp-4 | All CopyRights Reserved
+        </Footer>
       }
     >
       <Routes>

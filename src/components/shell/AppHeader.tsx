@@ -21,7 +21,7 @@ const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
       height={70}
       className={classes.header}
       px="20%"
-      sx={{ background: 'none', border: 'none' }}
+      sx={{ background: 'none', border: 'none', position: 'static' }}
     >
       <Box
         sx={{
