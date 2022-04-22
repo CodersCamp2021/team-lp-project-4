@@ -2,7 +2,6 @@
   "name": "team-lp-project-4",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://coderscamp2021.github.io/team-lp-project-4",
   "dependencies": {
     "@fontsource/poppins": "^4.5.5",
     "@mantine/core": "^4.1.1",
