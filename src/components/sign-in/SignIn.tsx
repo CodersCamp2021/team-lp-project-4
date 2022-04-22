@@ -2,8 +2,12 @@ import * as Yup from 'yup';
 import { useForm, yupResolver } from '@mantine/form';
 import { Box, Button, PasswordInput, Space, Stack, Text } from '@mantine/core';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchData, Response } from '../../utils/fetchData';
 import Input from './Input';
+import { showNotification } from '@mantine/notifications';
+import { BsCheckLg } from 'react-icons/bs';
+import { ImCross } from 'react-icons/im';
 
 const schema = Yup.object().shape({
   email: Yup.string().required('Email is required!').email('Invalid email!'),
@@ -11,7 +15,8 @@ const schema = Yup.object().shape({
 });
 
 function SignIn() {
-  const [response, setResponse] = useState<Response>({});
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const form = useForm({
     schema: yupResolver(schema),
     initialValues: {
@@ -20,7 +25,7 @@ function SignIn() {
     },
   });
 
-  const loggin = async ({
+  const logIn = async ({
     email,
     password,
   }: {
@@ -28,7 +33,7 @@ function SignIn() {
     password: string;
   }) => {
     const data = await fetchData<Response>(
-      'http://team-lp-project-3.herokuapp.com/user/login',
+      'https://team-lp-project-3.herokuapp.com/user/login',
       {
         method: 'POST',
         body: JSON.stringify({
@@ -42,14 +47,35 @@ function SignIn() {
         },
       },
     );
-    console.log(data);
-    setResponse(data);
+    return data;
   };
 
   const handleSubmit = (values: typeof form.values): void => {
-    loggin(values)
-      .then((res) => res)
-      .catch((err) => console.error(err));
+    setLoading(true);
+    logIn(values)
+      .then((res) => {
+        setLoading(false);
+        if (res.message) {
+          showNotification({
+            title: 'Success!',
+            message: res.message,
+            icon: <BsCheckLg size={10} />,
+            color: 'teal',
+          });
+          navigate('/');
+        } else {
+          showNotification({
+            title: 'Something went wrong!',
+            message: res.error,
+            icon: <ImCross size={10} />,
+            color: 'red',
+          });
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.error(err);
+      });
   };
 
   return (
@@ -113,24 +139,13 @@ function SignIn() {
             maxWidth: '300px',
           }}
         >
-          {response.error ? (
-            <Text sx={{ color: 'white', paddingLeft: 10 }}>
-              {response.error}
-            </Text>
-          ) : (
-            <></>
-          )}
           <Button
             type="submit"
-            compact
+            loading={loading}
+            loaderPosition="right"
             size="xl"
-            sx={{
-              color: 'black',
-              background: '#fcfcfc',
-              mixBlendMode: 'screen',
-              '&:before': { position: 'absolute', mixBlendMode: 'color-burn' },
-              '&:hover': { background: '#777' },
-            }}
+            color="violet"
+            compact
           >
             Sign up
           </Button>
