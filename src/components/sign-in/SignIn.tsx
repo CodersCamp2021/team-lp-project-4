@@ -3,7 +3,7 @@ import { useForm, yupResolver } from '@mantine/form';
 import { Box, Button, PasswordInput, Space, Stack, Text } from '@mantine/core';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchData, Response } from '../../utils/fetchData';
+import { fetchData, Response } from '../../hooks/fetchData';
 import Input from './Input';
 import { showNotification } from '@mantine/notifications';
 import { BsCheckLg } from 'react-icons/bs';
