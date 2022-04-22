@@ -1,8 +1,8 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import Shell from './components/shell/Shell';
-import { Global, MantineProvider, MantineThemeOverride } from '@mantine/core';
 import background from './assets/rose-petals_1.svg';
+import { Global, MantineProvider, MantineThemeOverride } from '@mantine/core';
 import '@fontsource/poppins';
 import { NotificationsProvider } from '@mantine/notifications';
 
