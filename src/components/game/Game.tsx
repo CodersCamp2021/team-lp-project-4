@@ -2,20 +2,17 @@ import { Grid } from '@mantine/core';
 import GameHero from './GameHero';
 import GameInfo from './GameInfo';
 
+import useGameStyles from '../../hooks/use-game-styles';
+
 const Game = () => {
+  const { classes } = useGameStyles();
+
   return (
-    <Grid
-      sx={{
-        width: '70vw',
-        height: '80%',
-        alignItems: 'center',
-        margin: '0 auto',
-      }}
-    >
-      <Grid.Col>
+    <Grid justify="center" columns={12} className={classes.gameGrid}>
+      <Grid.Col span={10}>
         <GameHero />
       </Grid.Col>
-      <Grid.Col>
+      <Grid.Col span={10}>
         <GameInfo />
       </Grid.Col>
     </Grid>
