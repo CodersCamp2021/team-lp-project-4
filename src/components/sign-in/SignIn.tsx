@@ -147,7 +147,7 @@ function SignIn() {
             color="violet"
             compact
           >
-            Sign up
+            Sign in
           </Button>
         </Box>
       </form>
