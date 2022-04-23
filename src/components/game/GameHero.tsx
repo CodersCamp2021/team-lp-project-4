@@ -23,7 +23,7 @@ const GameHero = ({
       <Grid.Col span={8}>
         <Box className={classes.heroInfoWrapper}>
           <Image
-            src={cover.screenshot_med}
+            src={cover?.screenshot_med}
             width={200}
             height={200}
             className={classes.image}
@@ -41,7 +41,7 @@ const GameHero = ({
       <Grid.Col span={3} sx={{ width: '100%' }}>
         <Center>
           <Text className={classes.heroRating}>
-            {calcRatings(ratings)}/5{' '}
+            {ratings?.length > 0 ? calcRatings(ratings) : 0}/5{' '}
             <AiFillStar
               fill="gold"
               size={90}
