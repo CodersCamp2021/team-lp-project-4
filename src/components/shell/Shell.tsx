@@ -8,6 +8,7 @@ import AllGames from '../games/AllGames';
 import Home from '../Home/Home';
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
+import SignIn from '../sign-in/SignIn';
 
 const endpoints = [
   {
@@ -52,9 +53,9 @@ const Shell = () => {
     >
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<SignIn />} />
         <Route path="/games" element={<Games />} />
         <Route path="/games/all" element={<AllGames />} />
-        <Route path="/login" element={<div>login</div>} />
         <Route path="/register" element={<div>register</div>} />
       </Routes>
     </AppShell>
