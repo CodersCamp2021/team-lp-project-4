@@ -1,6 +1,6 @@
 import { Container, Stack, Text } from '@mantine/core';
-import HomeGames from './HomeGames';
 import useHomeStyles from '../../hooks/use-home-styles';
+import HomeGames from './HomeGames';
 
 const Home = () => {
   const { classes } = useHomeStyles();

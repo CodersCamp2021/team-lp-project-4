@@ -1,6 +1,6 @@
 import { SimpleGrid } from '@mantine/core';
-import HomeGame from './HomeGame';
 import { useMediaQuery } from '@mantine/hooks';
+import HomeGame from './HomeGame';
 
 const placeholderGames = [
   {
