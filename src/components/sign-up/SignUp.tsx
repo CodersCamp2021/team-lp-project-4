@@ -62,7 +62,7 @@ function SignUp() {
     password: string;
   }) => {
     const data = await fetchData<Response>(
-      'https://team-lp-project-3.herokuapp.com/user/register',
+      'http://localhost:3001/user/register',
       {
         method: 'POST',
         body: JSON.stringify({
