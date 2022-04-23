@@ -87,7 +87,7 @@ const useGamesStyles = createStyles((theme) => ({
 
   cardImage: {
     width: 80,
-    padding: '26px 40px 8px',
+    padding: '26px 0 8px',
     [theme.fn.smallerThan(1460)]: {
       padding: '26px 0 0 ',
     },
@@ -206,8 +206,8 @@ const useGamesStyles = createStyles((theme) => ({
   gameImage: {
     minWidth: 50,
     width: 50,
-    paddingRight: '15px',
-    paddingLeft: '11px',
+    marginRight: '15px',
+    marginLeft: '11px',
   },
 
   gameTextWrapper: {
