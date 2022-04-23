@@ -1,34 +1,11 @@
 import { Grid, Box, Text, ScrollArea } from '@mantine/core';
 import { Game } from '../../interfaces/Games';
+import { Rating } from '../../interfaces/Rating';
 import UserTile from './UserTile';
 
-const userData = [
-  {
-    id: 1,
-    firstName: 'Jakub',
-    lastName: 'Czerwiński',
-    username: 'kubaczerwinski77',
-    rating: 2,
-  },
-  {
-    id: 2,
-    firstName: 'Maciej',
-    lastName: 'Jankowski',
-    username: 'macjank',
-    rating: 2,
-  },
-  {
-    id: 3,
-    firstName: 'Łukasz',
-    lastName: 'Powązka',
-    username: 'lukiq',
-    rating: 1,
-  },
-];
+type GameInfoProps = Pick<Game, 'description'> & { ratings: Rating[] };
 
-type GameInfoProps = Pick<Game, 'description'>;
-
-const GameInfo = ({ description }: GameInfoProps) => {
+const GameInfo = ({ description, ratings }: GameInfoProps) => {
   return (
     <Grid>
       <Grid.Col span={8}>
@@ -87,9 +64,15 @@ const GameInfo = ({ description }: GameInfoProps) => {
             justifyContent: 'space-evenly',
           }}
         >
-          {userData.map((user) => (
-            <UserTile key={user.id} user={user} />
-          ))}
+          {ratings
+            ? ratings.length > 0
+              ? ratings
+                  .slice(-3)
+                  .map((rating) => (
+                    <UserTile key={rating._id} ratingObj={rating} />
+                  ))
+              : null
+            : null}
         </Box>
       </Grid.Col>
     </Grid>

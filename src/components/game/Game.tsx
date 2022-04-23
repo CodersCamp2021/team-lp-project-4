@@ -4,14 +4,16 @@ import GameInfo from './GameInfo';
 
 import useGameStyles from '../../hooks/use-game-styles';
 import { useGame } from '../../hooks/use-game';
+import { useRatings } from '../../hooks/use-ratings';
 import { useParams } from 'react-router-dom';
 
 const Game = () => {
   const { classes } = useGameStyles();
   const { gameId } = useParams();
-  const { data: game, isLoading } = useGame(gameId);
+  const { data: game, isLoading: isLoadingGame } = useGame(gameId);
+  const { data: ratings, isLoading: isLoadingRatings } = useRatings(gameId);
 
-  if (isLoading) {
+  if (isLoadingGame || isLoadingRatings) {
     return (
       <Container
         sx={{
@@ -24,9 +26,7 @@ const Game = () => {
         <Loader size="xl" color="white" />
       </Container>
     );
-  } else if (game === undefined) {
-    return <Text>Game not found!</Text>;
-  } else {
+  } else if (game !== undefined) {
     const { cover, title, category, platform, rating, description } = game;
     return (
       <Grid justify="center" columns={12} className={classes.gameGrid}>
@@ -40,10 +40,12 @@ const Game = () => {
           />
         </Grid.Col>
         <Grid.Col span={10}>
-          <GameInfo description={description} />
+          <GameInfo description={description} ratings={ratings || []} />
         </Grid.Col>
       </Grid>
     );
+  } else {
+    return <Text>Game not found!</Text>;
   }
 };
 

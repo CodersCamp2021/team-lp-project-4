@@ -30,8 +30,10 @@ const GameHero = ({
           />
           <Box className={classes.heroTextWrapper}>
             <Text className={classes.title}>{title}</Text>
-            <Text className={classes.subTitle}>category: {category}</Text>
-            <Text className={classes.subTitle}>platforms: {platform}</Text>
+            <Text className={classes.subTitle}>Category: {category}</Text>
+            <Text className={classes.subTitle}>
+              Platform: {platform.join(', ')}
+            </Text>
           </Box>
         </Box>
       </Grid.Col>
