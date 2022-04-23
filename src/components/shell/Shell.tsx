@@ -9,6 +9,7 @@ import Home from '../Home/Home';
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
 import SignIn from '../sign-in/SignIn';
+import SignUp from '../sign-up/SignUp';
 
 const endpoints = [
   {
@@ -56,7 +57,7 @@ const Shell = () => {
         <Route path="/login" element={<SignIn />} />
         <Route path="/games" element={<Games />} />
         <Route path="/games/all" element={<AllGames />} />
-        <Route path="/register" element={<div>register</div>} />
+        <Route path="/register" element={<SignUp />} />
       </Routes>
     </AppShell>
   );
