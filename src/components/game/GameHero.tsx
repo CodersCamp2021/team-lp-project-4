@@ -2,18 +2,19 @@ import { Grid, Image, Center, Text, Button, Box } from '@mantine/core';
 import { AiOutlineLike, AiOutlineDislike, AiFillStar } from 'react-icons/ai';
 import useGameStyles from '../../hooks/use-game-styles';
 import { Game } from '../../interfaces/Games';
+import { Rating } from '../../interfaces/Rating';
+import { calcRatings } from '../utils/calcRatings';
 
-type GameHeroProps = Pick<
-  Game,
-  'cover' | 'title' | 'category' | 'platform' | 'rating'
->;
+type GameHeroProps = Pick<Game, 'cover' | 'title' | 'category' | 'platform'> & {
+  ratings: Rating[];
+};
 
 const GameHero = ({
   cover,
   title,
   category,
   platform,
-  rating,
+  ratings,
 }: GameHeroProps) => {
   const { classes } = useGameStyles();
 
@@ -40,7 +41,7 @@ const GameHero = ({
       <Grid.Col span={3} sx={{ width: '100%' }}>
         <Center>
           <Text className={classes.heroRating}>
-            {rating.toFixed(1)}/5{' '}
+            {calcRatings(ratings)}/5{' '}
             <AiFillStar
               fill="gold"
               size={90}

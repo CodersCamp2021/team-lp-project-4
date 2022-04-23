@@ -27,7 +27,7 @@ const Game = () => {
       </Container>
     );
   } else if (game !== undefined) {
-    const { cover, title, category, platform, rating, description } = game;
+    const { cover, title, category, platform, description } = game;
     return (
       <Grid justify="center" columns={12} className={classes.gameGrid}>
         <Grid.Col span={10}>
@@ -36,7 +36,7 @@ const Game = () => {
             title={title || ''}
             category={category || ''}
             platform={platform || ''}
-            rating={rating || 0}
+            ratings={ratings || []}
           />
         </Grid.Col>
         <Grid.Col span={10}>
