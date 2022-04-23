@@ -12,13 +12,11 @@ const useGameStyles = createStyles({
   heroInfoWrapper: {
     display: 'flex',
     justifyContent: 'flex-start',
-    paddingLeft: 25,
   },
 
   heroTextWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     maxHeight: 200,
   },
 

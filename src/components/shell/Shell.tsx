@@ -54,7 +54,7 @@ const Shell = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<Games />} />
-        <Route path="/games/:id" element={<Game />} />
+        <Route path="/games/:gameId" element={<Game />} />
         <Route path="/games/all" element={<AllGames />} />
         <Route path="/login" element={<div>login</div>} />
         <Route path="/register" element={<div>register</div>} />
