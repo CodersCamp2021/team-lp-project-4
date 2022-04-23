@@ -1,32 +1,14 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { createStyles, AppShell } from '@mantine/core';
+import { AppShell } from '@mantine/core';
 
+import useShellStyles from '../../hooks/use-shell-styles';
+import Games from '../games/Games';
+import AllGames from '../games/AllGames';
+import Home from '../temp-home/Home';
+import Game from '../game/Game';
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
-import Games from '../Games';
-import SingleGame from '../SingleGame';
-
-const useStyles = createStyles((theme) => ({
-  navbar: {
-    [theme.fn.largerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  links: {
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  header: {
-    [theme.fn.smallerThan('sm')]: {
-      paddingLeft: '5%',
-      paddingRight: '5%',
-    },
-  },
-}));
 
 const endpoints = [
   {
@@ -45,7 +27,7 @@ const endpoints = [
 
 const Shell = () => {
   const [opened, setOpened] = useState(false);
-  const { classes } = useStyles();
+  const { classes } = useShellStyles();
 
   return (
     <AppShell
@@ -70,9 +52,10 @@ const Shell = () => {
       }
     >
       <Routes>
-        <Route path="/" element={<div>home</div>} />
+        <Route path="/" element={<Home />} />
         <Route path="/games" element={<Games />} />
-        <Route path="/games/:id" element={<SingleGame />} />
+        <Route path="/games/:id" element={<Game />} />
+        <Route path="/games/all" element={<AllGames />} />
         <Route path="/login" element={<div>login</div>} />
         <Route path="/register" element={<div>register</div>} />
       </Routes>
