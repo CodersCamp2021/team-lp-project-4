@@ -57,12 +57,12 @@ const GameHero = ({
             <Text className={classes.title}>{title}</Text>
             <Text className={classes.subTitle}>Category: {category}</Text>
             <Text className={classes.subTitle}>
-              Platform: {platform.join(', ')}
+              Platform: {platform?.join(', ')}
             </Text>
           </Box>
         </Box>
       </Grid.Col>
-      <Grid.Col span={3} sx={{ width: '100%' }}>
+      <Grid.Col span={3} sx={{ margin: '0 auto' }}>
         <Center>
           <Text className={classes.heroRating}>
             {ratings?.length > 0 ? calcRatings(ratings) : 0}/5{' '}

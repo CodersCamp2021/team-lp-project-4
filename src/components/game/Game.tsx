@@ -1,16 +1,16 @@
-import { Container, Grid, Loader, Text } from '@mantine/core';
+import { Container, Grid, Loader, Text, Center } from '@mantine/core';
 import GameHero from './GameHero';
 import GameInfo from './GameInfo';
 
 import useGameStyles from '../../hooks/use-game-styles';
 import { useGame } from '../../hooks/use-game';
 import { useRatings } from '../../hooks/use-ratings';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const Game = () => {
   const { classes } = useGameStyles();
   const { gameId } = useParams();
-  const { data: game, isLoading: isLoadingGame } = useGame(gameId);
+  const { data: game, isLoading: isLoadingGame, isError } = useGame(gameId);
   const { data: ratings, isLoading: isLoadingRatings } = useRatings(gameId);
 
   if (isLoadingGame || isLoadingRatings) {
@@ -26,6 +26,40 @@ const Game = () => {
         <Loader size="xl" color="white" />
       </Container>
     );
+  } else if (isError) {
+    return (
+      <Center
+        sx={{
+          margin: '0 auto',
+          flexDirection: 'column',
+          width: '80vw',
+          height: '80vh',
+          color: 'rgb(235,235,235)',
+        }}
+      >
+        <Text
+          sx={{
+            fontSize: 60,
+          }}
+        >
+          Game not found!
+        </Text>
+        <Text
+          component={Link}
+          to={'/games'}
+          sx={{
+            fontSize: 36,
+            color: 'rgb(168, 168, 168)',
+            textDecoration: 'underline',
+            '&:hover': {
+              color: 'rgb(220, 220, 220)',
+            },
+          }}
+        >
+          Go back to games
+        </Text>
+      </Center>
+    );
   } else if (game !== undefined) {
     const { _id, cover, title, category, platform, description } = game;
     return (
@@ -36,17 +70,17 @@ const Game = () => {
             cover={cover || ''}
             title={title || ''}
             category={category || ''}
-            platform={platform || ''}
+            platform={platform || []}
             ratings={ratings || []}
           />
         </Grid.Col>
         <Grid.Col span={10}>
-          <GameInfo description={description} ratings={ratings || []} />
+          <GameInfo description={description || ''} ratings={ratings || []} />
         </Grid.Col>
       </Grid>
     );
   } else {
-    return <Text>Game not found!</Text>;
+    return null;
   }
 };
 

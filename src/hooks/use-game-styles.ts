@@ -31,6 +31,7 @@ const useGameStyles = createStyles({
     fontWeight: 700,
     fontSize: 60,
     lineHeight: '60px',
+    paddingBottom: 6,
   },
 
   subTitle: {
