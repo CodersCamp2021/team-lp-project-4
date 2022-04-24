@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { Game } from '../../interfaces/Games';
 import useGamesStyles from '../../hooks/use-games-styles';
+import { AiFillStar } from 'react-icons/ai';
 
 type TileProps = { game: Game; index: number };
 
@@ -25,7 +26,7 @@ const GameTile = ({ game, index }: TileProps) => {
     >
       <Box
         component={Link}
-        to={_id}
+        to={`/games/${_id}`}
         className={classes.tileWrapper}
         data-testid={`gameDiv${_id}`}
       >
@@ -53,7 +54,8 @@ const GameTile = ({ game, index }: TileProps) => {
           </Box>
         </Box>
         <Text className={classes.gameRating}>
-          {ratings?.length > 0 ? ratings[0]?.stars.toFixed(1) : 0}/5 ⭐️
+          {ratings?.length > 0 ? ratings[0]?.stars.toFixed(1) : 0}/5{' '}
+          <AiFillStar style={{ verticalAlign: 'sub' }} size={25} fill="gold" />
         </Text>
       </Box>
     </motion.div>

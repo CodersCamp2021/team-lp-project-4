@@ -22,12 +22,9 @@ const Recommended = () => {
   const { classes } = useGamesStyles();
   const smallScreen = useMediaQuery('(max-width: 870px)');
   const mediumScreen = useMediaQuery('(max-width: 1250px)');
-  const { data, isLoading } = useGames();
+  const { data: games, isLoading } = useGames();
 
-  const games = React.useMemo(
-    () => data?.sort(() => 0.5 - Math.random()),
-    [data],
-  );
+  const gamesToDisplay = React.useMemo(() => games?.slice(45, 50), [games]);
 
   return (
     <Box>
@@ -43,7 +40,7 @@ const Recommended = () => {
         </Container>
       ) : (
         <Group className={classes.recommendedGamesWrapper}>
-          {games?.slice(0, 5).map((game, index) => (
+          {gamesToDisplay?.map((game, index) => (
             <motion.div
               key={game._id}
               onHoverStart={() => setHoveredCard(index)}

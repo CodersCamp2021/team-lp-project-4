@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Game } from '../../interfaces/Games';
 import useGamesStyles from '../../hooks/use-games-styles';
+import { AiFillStar } from 'react-icons/ai';
 
 type CardProps = {
   game: Game;
@@ -38,7 +39,8 @@ const GameCard = ({ game }: CardProps) => {
       </Card.Section>
       <Card.Section>
         <Text className={classes.cardRating}>
-          {ratings?.length > 0 ? ratings[0]?.stars.toFixed(1) : 0}/5 ⭐️
+          {ratings?.length > 0 ? ratings[0]?.stars.toFixed(1) : 0}/5{' '}
+          <AiFillStar style={{ verticalAlign: 'sub' }} size={16} fill="gold" />
         </Text>
       </Card.Section>
       <Card.Section className={classes.cardDeveloperSection}>
