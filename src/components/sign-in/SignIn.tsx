@@ -35,18 +35,21 @@ function SignIn() {
     email: string;
     password: string;
   }) => {
-    const data = await fetchData<Response>('http://localhost:3001/user/login', {
-      method: 'POST',
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'content-type': 'application/json',
+    const data = await fetchData<Response>(
+      'https://team-lp-project-3.herokuapp.com/user/login',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'content-type': 'application/json',
+        },
       },
-    });
+    );
     return data;
   };
 
@@ -63,7 +66,7 @@ function SignIn() {
             color: 'teal',
           });
           const userInfo = await fetchData<UserInfo>(
-            'http://localhost:3001/user/userInfo',
+            'https://team-lp-project-3.herokuapp.com/user/userInfo',
             {
               credentials: 'include',
               headers: {
