@@ -11,18 +11,7 @@ const AllGamesSelection = () => {
   const { data: games, isLoading } = useGames();
 
   const gamesToDisplay = React.useMemo(
-    () =>
-      games
-        ?.sort((a, b) => {
-          if (a.rating > b.rating) {
-            return 1;
-          } else if (a.rating < b.rating) {
-            return -1;
-          } else {
-            return 0;
-          }
-        })
-        .slice(games.length - 20, games.length - 16),
+    () => games?.slice(games.length - 9, games.length - 5),
     [games],
   );
   return (

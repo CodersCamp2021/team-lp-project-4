@@ -13,15 +13,15 @@ const TopRatedSelection = () => {
     () =>
       games
         ?.sort((a, b) => {
-          if (a.rating > b.rating) {
+          if (a.ratings[0].stars < b.ratings[0].stars) {
             return 1;
-          } else if (a.rating < b.rating) {
+          } else if (a.ratings[0].stars > b.ratings[0].stars) {
             return -1;
           } else {
             return 0;
           }
         })
-        ?.slice(games.length - 4),
+        ?.slice(0, 4),
     [games],
   );
 
