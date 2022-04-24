@@ -15,7 +15,7 @@ const AllGames = () => {
   if (status !== 'success') {
     content = (
       <Container className={classes.loadingContainer}>
-        <Loader size="xl" color="white" />;
+        <Loader size="xl" color="white" />
       </Container>
     );
   } else {
