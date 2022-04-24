@@ -1,4 +1,4 @@
-export interface Rating {
+export interface InnerRating {
   _id: string;
   gameId: string;
   userId: string;
@@ -11,4 +11,8 @@ export interface Rating {
       username: string;
     },
   ];
+}
+
+export interface Rating {
+  rating: InnerRating[];
 }

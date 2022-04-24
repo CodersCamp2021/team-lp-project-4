@@ -31,6 +31,7 @@ const useGameStyles = createStyles({
     fontWeight: 700,
     fontSize: 60,
     lineHeight: '60px',
+    paddingBottom: 6,
   },
 
   subTitle: {
@@ -41,18 +42,24 @@ const useGameStyles = createStyles({
 
   heroRating: {
     color: 'rgb(235,235,235)',
-    fontSize: 70,
+    fontSize: 55,
     fontWeight: 700,
     letterSpacing: '0.12em',
     marginBottom: 20,
   },
 
-  heroThumbs: {
+  thumbsButtons: {
     color: 'rgb(235,235,235)',
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: '#866adb66',
+    },
+  },
+
+  thumbsText: {
     fontSize: 35,
     fontWeight: 700,
     letterSpacing: '0.125em',
-    backgroundColor: 'transparent',
   },
 });
 

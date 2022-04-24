@@ -37,11 +37,11 @@ const Game = () => {
             title={title || ''}
             category={category || ''}
             platform={platform || ''}
-            ratings={ratings || []}
+            ratings={ratings}
           />
         </Grid.Col>
         <Grid.Col span={10}>
-          <GameInfo description={description} ratings={ratings || []} />
+          <GameInfo description={description} ratings={ratings} />
         </Grid.Col>
       </Grid>
     );

@@ -1,6 +1,6 @@
-import { Rating } from '../../interfaces/Rating';
+import { InnerRating } from '../../interfaces/Rating';
 
-export const calcRatings = (ratings: Rating[]): string => {
+export const calcRatings = (ratings: InnerRating[]): string => {
   let likes = 0;
   let dislikes = 0;
   ratings.forEach((rating) => {
