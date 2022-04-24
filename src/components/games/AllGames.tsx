@@ -1,18 +1,21 @@
 import { Container, Loader, ScrollArea, SimpleGrid, Text } from '@mantine/core';
+import React from 'react';
 import { useGames } from '../../hooks/use-games';
 import useAllGamesStyles from '../../hooks/use-all-games-styles';
 import GameTile from './GameTile';
 
 const AllGames = () => {
   const { classes } = useAllGamesStyles();
-  const { data, status } = useGames();
+  const { data: games, status } = useGames();
+
+  const gamesToDisplay = React.useMemo(() => games, [games]);
 
   let content;
 
   if (status !== 'success') {
     content = (
       <Container className={classes.loadingContainer}>
-        <Loader size="xl" color="white" />;
+        <Loader size="xl" color="white" />
       </Container>
     );
   } else {
@@ -23,7 +26,7 @@ const AllGames = () => {
           breakpoints={[{ maxWidth: 1024, cols: 1, spacing: 'md' }]}
           sx={{ padding: '0 20px' }}
         >
-          {data.map((game, index) => (
+          {gamesToDisplay?.map((game, index) => (
             <GameTile key={game._id} game={game} index={index} />
           ))}
         </SimpleGrid>

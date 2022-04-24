@@ -2,11 +2,12 @@
   "name": "team-lp-project-4",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://coderscamp2021.github.io/team-lp-project-4",
   "dependencies": {
     "@fontsource/poppins": "^4.5.5",
     "@mantine/core": "^4.1.1",
+    "@mantine/form": "^4.1.3",
     "@mantine/hooks": "^4.1.1",
+    "@mantine/notifications": "^4.1.4",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -22,7 +23,8 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "typescript": "^4.6.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "predeploy": "npm run build",

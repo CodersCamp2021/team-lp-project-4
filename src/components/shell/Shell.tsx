@@ -5,10 +5,12 @@ import { AppShell } from '@mantine/core';
 import useShellStyles from '../../hooks/use-shell-styles';
 import Games from '../games/Games';
 import AllGames from '../games/AllGames';
-import Home from '../temp-home/Home';
+import Home from '../home/Home';
 import Game from '../game/Game';
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
+import SignIn from '../sign-in/SignIn';
+import SignUp from '../sign-up/SignUp';
 
 const endpoints = [
   {
@@ -53,11 +55,11 @@ const Shell = () => {
     >
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<SignIn />} />
         <Route path="/games" element={<Games />} />
         <Route path="/games/:gameId" element={<Game />} />
         <Route path="/games/all" element={<AllGames />} />
-        <Route path="/login" element={<div>login</div>} />
-        <Route path="/register" element={<div>register</div>} />
+        <Route path="/register" element={<SignUp />} />
       </Routes>
     </AppShell>
   );
