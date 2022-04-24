@@ -47,12 +47,18 @@ const useGameStyles = createStyles({
     marginBottom: 20,
   },
 
-  heroThumbs: {
+  thumbsButtons: {
     color: 'rgb(235,235,235)',
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: '#866adb66',
+    },
+  },
+
+  thumbsText: {
     fontSize: 35,
     fontWeight: 700,
     letterSpacing: '0.125em',
-    backgroundColor: 'transparent',
   },
 });
 
