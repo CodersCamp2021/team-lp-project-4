@@ -5,7 +5,7 @@ import { AppShell } from '@mantine/core';
 import useShellStyles from '../../hooks/use-shell-styles';
 import Games from '../games/Games';
 import AllGames from '../games/AllGames';
-import Home from '../temp-home/Home';
+import Home from '../home/Home';
 import Game from '../game/Game';
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
