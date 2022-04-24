@@ -42,7 +42,7 @@ const useGameStyles = createStyles({
 
   heroRating: {
     color: 'rgb(235,235,235)',
-    fontSize: 70,
+    fontSize: 55,
     fontWeight: 700,
     letterSpacing: '0.12em',
     marginBottom: 20,

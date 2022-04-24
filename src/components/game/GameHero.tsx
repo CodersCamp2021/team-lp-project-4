@@ -71,7 +71,7 @@ const GameHero = ({
             /5{' '}
             <AiFillStar
               fill="gold"
-              size={90}
+              size={70}
               style={{ verticalAlign: 'middle' }}
             />
           </Text>
