@@ -15,7 +15,7 @@ import { calcRatings } from '../utils/calcRatings';
 import { updateRating } from '../utils/updateRating';
 
 type GameHeroProps = Pick<Game, 'cover' | 'title' | 'category' | 'platform'> & {
-  ratings: Rating[];
+  ratings: Rating | undefined;
   gameId: string;
 };
 
@@ -65,7 +65,10 @@ const GameHero = ({
       <Grid.Col span={3} sx={{ margin: '0 auto' }}>
         <Center>
           <Text className={classes.heroRating}>
-            {ratings?.length > 0 ? calcRatings(ratings) : 0}/5{' '}
+            {ratings && ratings.rating?.length > 0
+              ? calcRatings(ratings.rating)
+              : 0}
+            /5{' '}
             <AiFillStar
               fill="gold"
               size={90}

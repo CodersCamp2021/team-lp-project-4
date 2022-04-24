@@ -3,7 +3,9 @@ import { Game } from '../../interfaces/Games';
 import { Rating } from '../../interfaces/Rating';
 import UserTile from './UserTile';
 
-type GameInfoProps = Pick<Game, 'description'> & { ratings: Rating[] };
+type GameInfoProps = Pick<Game, 'description'> & {
+  ratings: Rating | undefined;
+};
 
 const GameInfo = ({ description, ratings }: GameInfoProps) => {
   return (
@@ -39,7 +41,7 @@ const GameInfo = ({ description, ratings }: GameInfoProps) => {
                 lineHeight: '36px',
               }}
             >
-              {description + description}
+              {description}
             </Text>
           </ScrollArea>
         </Box>
@@ -64,14 +66,12 @@ const GameInfo = ({ description, ratings }: GameInfoProps) => {
             justifyContent: 'space-evenly',
           }}
         >
-          {ratings
-            ? ratings.length > 0
-              ? ratings
-                  .slice(-3)
-                  .map((rating) => (
-                    <UserTile key={rating._id} ratingObj={rating} />
-                  ))
-              : null
+          {ratings && ratings.rating.length > 0
+            ? ratings.rating
+                .slice(-3)
+                .map((rating) => (
+                  <UserTile key={rating._id} ratingObj={rating} />
+                ))
             : null}
         </Box>
       </Grid.Col>

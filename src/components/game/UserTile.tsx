@@ -3,11 +3,11 @@ import { Box, Text } from '@mantine/core';
 import { motion } from 'framer-motion';
 import { AiFillStar } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { Rating } from '../../interfaces/Rating';
+import { InnerRating } from '../../interfaces/Rating';
 
 const hoverAnimation = { scale: 1.06, originY: 0.5 };
 
-const UserTile = ({ ratingObj }: { ratingObj: Rating }) => {
+const UserTile = ({ ratingObj }: { ratingObj: InnerRating }) => {
   const [hoveredTile, setHoveredTile] = useState<boolean>(false);
 
   if (ratingObj) {
