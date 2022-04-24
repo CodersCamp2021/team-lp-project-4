@@ -1,13 +1,14 @@
 import * as Yup from 'yup';
 import { useForm, yupResolver } from '@mantine/form';
 import { Box, Button, PasswordInput, Space, Stack, Text } from '@mantine/core';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchData, Response } from '../../hooks/fetchData';
+import { fetchData, Response, UserInfo } from '../../hooks/fetchData';
 import Input from './Input';
 import { showNotification } from '@mantine/notifications';
 import { BsCheckLg } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
+import { AuthContext } from '../../AuthContext';
 
 const schema = Yup.object().shape({
   email: Yup.string().required('Email is required!').email('Invalid email!'),
@@ -25,6 +26,8 @@ function SignIn() {
     },
   });
 
+  const auth = useContext(AuthContext);
+
   const logIn = async ({
     email,
     password,
@@ -32,28 +35,25 @@ function SignIn() {
     email: string;
     password: string;
   }) => {
-    const data = await fetchData<Response>(
-      'https://team-lp-project-3.herokuapp.com/user/login',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          'content-type': 'application/json',
-        },
+    const data = await fetchData<Response>('http://localhost:3001/user/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
       },
-    );
+    });
     return data;
   };
 
   const handleSubmit = (values: typeof form.values): void => {
     setLoading(true);
     logIn(values)
-      .then((res) => {
+      .then(async (res) => {
         setLoading(false);
         if (res.message) {
           showNotification({
@@ -62,6 +62,16 @@ function SignIn() {
             icon: <BsCheckLg size={10} />,
             color: 'teal',
           });
+          const userInfo = await fetchData<UserInfo>(
+            'http://localhost:3001/user/userInfo',
+            {
+              credentials: 'include',
+              headers: {
+                'content-type': 'application/json',
+              },
+            },
+          );
+          auth?.setUserInfo(userInfo);
           navigate('/');
         } else {
           showNotification({
