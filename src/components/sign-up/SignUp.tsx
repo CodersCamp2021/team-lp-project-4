@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { useForm, yupResolver } from '@mantine/form';
 import { Box, Button, SimpleGrid, Stack, Text } from '@mantine/core';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchData, Response } from '../../hooks/fetchData';
 import Input from '../sign-in/Input';
@@ -9,6 +9,8 @@ import { showNotification } from '@mantine/notifications';
 import { BsCheckLg } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
 import PasswordInput from './PasswordInput';
+import { AuthContext } from '../../AuthContext';
+import { UserInfo } from '../../hooks/fetchData';
 
 const schema = Yup.object().shape({
   firstName: Yup.string()
@@ -47,6 +49,8 @@ function SignUp() {
       confirmPassword: '',
     },
   });
+
+  const auth = useContext(AuthContext);
 
   const register = async ({
     firstName,
@@ -87,18 +91,38 @@ function SignUp() {
     register(values)
       .then((res) => {
         setLoading(false);
-        if (res.message) {
+        if (res?.message) {
           showNotification({
             title: 'Success!',
-            message: res.message,
+            message: res?.message,
             icon: <BsCheckLg size={10} />,
             color: 'teal',
           });
-          navigate('/');
+          fetchData<UserInfo>(
+            'https://team-lp-project-3.herokuapp.com/user/userInfo',
+            {
+              credentials: 'include',
+              headers: {
+                'content-type': 'application/json',
+              },
+            },
+          )
+            .then((userInfo) => {
+              auth?.setUserInfo(userInfo);
+              navigate('/');
+            })
+            .catch((error) =>
+              showNotification({
+                title: 'Something went wrong!',
+                message: error as Error,
+                icon: <ImCross size={10} />,
+                color: 'red',
+              }),
+            );
         } else {
           showNotification({
             title: 'Something went wrong!',
-            message: res.error,
+            message: res?.error,
             icon: <ImCross size={10} />,
             color: 'red',
           });
