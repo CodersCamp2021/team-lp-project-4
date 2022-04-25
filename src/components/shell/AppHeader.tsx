@@ -10,11 +10,12 @@ import {
 } from '@mantine/core';
 import { useContext } from 'react';
 import { UserButton } from './UserButton';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext';
 import { BiLogOut } from 'react-icons/bi';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
+import { handleLogout } from './AccountState';
 
 type AppHeaderProps = {
   opened: boolean;
@@ -23,7 +24,7 @@ type AppHeaderProps = {
 };
 const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
   const auth = useContext(AuthContext);
-
+  const navigate = useNavigate();
   return (
     <Header
       height={70}
@@ -109,7 +110,7 @@ const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
                   <Menu.Item
                     color="red"
                     icon={<BiLogOut size={14} />}
-                    onClick={() => console.log('Logging out...')}
+                    onClick={() => handleLogout(() => navigate(0))}
                   >
                     Log out
                   </Menu.Item>
