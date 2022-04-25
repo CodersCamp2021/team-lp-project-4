@@ -2,7 +2,7 @@ import { showNotification } from '@mantine/notifications';
 import { Response } from '../../hooks/fetchData';
 
 export const handleLogout = (fn: () => void) => {
-  fetch('http://localhost:3001/user/logout', {
+  fetch('https://team-lp-project-3.herokuapp.com/user/logout', {
     method: 'POST',
     credentials: 'include',
   })
@@ -22,18 +22,23 @@ export const handleChangeEmail = ({
   email: string;
   password: string;
 }) => {
-  fetch(`http://localhost:3001/user/changeEmail/${userId ? userId : ''}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-    mode: 'cors',
-    credentials: 'include',
-    headers: {
-      'content-type': 'application/json',
+  fetch(
+    `https://team-lp-project-3.herokuapp.com/user/changeEmail/${
+      userId ? userId : ''
+    }`,
+    {
+      method: 'PUT',
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+      },
     },
-  })
+  )
     .then((res) => res.json())
     .then((res: Response) => {
       if (res.message) {
@@ -64,19 +69,24 @@ export const handleChangePassword = ({
   newPassword: string;
   passwordConfirmation: string;
 }) => {
-  fetch(`http://localhost:3001/user/changePassword/${userId ? userId : ''}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      password,
-      newPassword,
-      passwordConfirmation,
-    }),
-    mode: 'cors',
-    credentials: 'include',
-    headers: {
-      'content-type': 'application/json',
+  fetch(
+    `https://team-lp-project-3.herokuapp.com/user/changePassword/${
+      userId ? userId : ''
+    }`,
+    {
+      method: 'PUT',
+      body: JSON.stringify({
+        password,
+        newPassword,
+        passwordConfirmation,
+      }),
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+      },
     },
-  })
+  )
     .then((res) => res.json())
     .then((res: Response) => {
       if (res.message) {
