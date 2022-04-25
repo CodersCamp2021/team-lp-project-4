@@ -1,5 +1,6 @@
 import { Grid, Image, Center, Text, Button, Box } from '@mantine/core';
-import { useState } from 'react';
+import { showNotification } from '@mantine/notifications';
+import { useContext, useState } from 'react';
 import {
   AiOutlineLike,
   AiOutlineDislike,
@@ -7,12 +8,17 @@ import {
   AiFillLike,
   AiFillDislike,
 } from 'react-icons/ai';
-import { useMutation } from 'react-query';
+import { BsCheckLg } from 'react-icons/bs';
+import { ImCross } from 'react-icons/im';
+import { useMutation, useQuery } from 'react-query';
+import { AuthContext } from '../../AuthContext';
 import useGameStyles from '../../hooks/use-game-styles';
 import { Game } from '../../interfaces/Games';
+import { UserRating } from '../../interfaces/UserRating';
 import { Rating } from '../../interfaces/Rating';
 import { calcRatings } from '../utils/calcRatings';
 import { updateRating } from '../utils/updateRating';
+import { fetchUserRating } from '../utils/fetchUserRating';
 
 type GameHeroProps = Pick<Game, 'cover' | 'title' | 'category' | 'platform'> & {
   ratings: Rating | undefined;
@@ -29,11 +35,40 @@ const GameHero = ({
 }: GameHeroProps) => {
   const [liked, setLiked] = useState(0);
   const { classes } = useGameStyles();
+  const auth = useContext(AuthContext);
+
+  useQuery<UserRating, Error>(
+    ['userRating', auth?.userInfo?.id],
+    () => fetchUserRating(auth?.userInfo?.id, gameId),
+    {
+      onSuccess: (userData) => {
+        setLiked(userData?.rating);
+      },
+      onError: (error) => {
+        console.error('Failed to fetch user rating:', error);
+      },
+      refetchOnWindowFocus: false,
+      enabled: !!auth?.userInfo?.id,
+    },
+  );
+
   const { mutate } = useMutation(updateRating, {
-    onMutate: (variables) => {
+    onSuccess: (_, variables) => {
       setLiked(variables.rating);
+      showNotification({
+        title: 'Success!',
+        message: 'Game rated.',
+        icon: <BsCheckLg size={10} />,
+        color: 'teal',
+      });
     },
     onError: (error) => {
+      showNotification({
+        title: 'Something went wrong!',
+        message: `Please make sure you're logged in.`,
+        icon: <ImCross size={10} />,
+        color: 'red',
+      });
       console.error('There was an error while rating the game:', error);
     },
   });
@@ -85,7 +120,14 @@ const GameHero = ({
                 <AiOutlineLike size={40} />
               )
             }
+            disabled={auth?.userInfo ? false : true}
             className={classes.thumbsButtons}
+            sx={{
+              '&:disabled': {
+                backgroundColor: 'transparent !important',
+                color: '#5c6268 !important',
+              },
+            }}
             onClick={liked === 2 ? handleReset : handleLike}
           >
             <Text
@@ -110,7 +152,14 @@ const GameHero = ({
                 <AiOutlineDislike size={40} />
               )
             }
+            disabled={auth?.userInfo ? false : true}
             className={classes.thumbsButtons}
+            sx={{
+              '&:disabled': {
+                backgroundColor: 'transparent !important',
+                color: '#5c6268 !important',
+              },
+            }}
             onClick={liked === 1 ? handleReset : handleDislike}
           >
             <Text
