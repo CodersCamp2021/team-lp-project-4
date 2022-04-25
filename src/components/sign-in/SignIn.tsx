@@ -56,16 +56,16 @@ function SignIn() {
   const handleSubmit = (values: typeof form.values): void => {
     setLoading(true);
     logIn(values)
-      .then(async (res) => {
+      .then((res) => {
         setLoading(false);
-        if (res.message) {
+        if (res?.message) {
           showNotification({
             title: 'Success!',
             message: res.message,
             icon: <BsCheckLg size={10} />,
             color: 'teal',
           });
-          const userInfo = await fetchData<UserInfo>(
+          fetchData<UserInfo>(
             'https://team-lp-project-3.herokuapp.com/user/userInfo',
             {
               credentials: 'include',
@@ -73,13 +73,16 @@ function SignIn() {
                 'content-type': 'application/json',
               },
             },
-          );
-          auth?.setUserInfo(userInfo);
-          navigate('/');
+          )
+            .then((userInfo) => {
+              auth?.setUserInfo(userInfo);
+              navigate('/');
+            })
+            .catch((error) => console.error(error));
         } else {
           showNotification({
-            title: 'Something went wrong!',
-            message: res.error,
+            title: 'Invalid email or password.',
+            message: res?.error,
             icon: <ImCross size={10} />,
             color: 'red',
           });
