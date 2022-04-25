@@ -1,35 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { createStyles, AppShell, Text, Footer } from '@mantine/core';
-import { useGames } from '../../utils/useGames';
-
+import { AppShell, Footer } from '@mantine/core';
+import useShellStyles from '../../hooks/use-shell-styles';
+import Games from '../games/Games';
+import AllGames from '../games/AllGames';
+import Home from '../home/Home';
+import Game from '../game/Game';
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
-
-import Home from '../Home/Home';
-
-const useStyles = createStyles((theme) => ({
-  navbar: {
-    position: 'absolute',
-    [theme.fn.largerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  links: {
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  header: {
-    position: 'absolute',
-    [theme.fn.smallerThan('sm')]: {
-      paddingLeft: '5%',
-      paddingRight: '5%',
-    },
-  },
-}));
+import SignIn from '../sign-in/SignIn';
+import SignUp from '../sign-up/SignUp';
 
 const endpoints = [
   {
@@ -48,8 +28,7 @@ const endpoints = [
 
 const Shell = () => {
   const [opened, setOpened] = useState(false);
-  const { classes } = useStyles();
-  const { data, status } = useGames();
+  const { classes } = useShellStyles();
 
   useEffect(() => {
     document.body.style.overflow = opened ? 'hidden' : 'auto';
@@ -108,19 +87,11 @@ const Shell = () => {
     >
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/games"
-          element={
-            <div>
-              <>
-                {status === 'success' &&
-                  data.map((game) => <Text key={game._id}>{game.title}</Text>)}
-              </>
-            </div>
-          }
-        />
-        <Route path="/login" element={<div>login</div>} />
-        <Route path="/register" element={<div>register</div>} />
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/games" element={<Games />} />
+        <Route path="/games/:gameId" element={<Game />} />
+        <Route path="/games/all" element={<AllGames />} />
+        <Route path="/register" element={<SignUp />} />
       </Routes>
     </AppShell>
   );

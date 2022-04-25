@@ -12,5 +12,7 @@ export type useGamesType = {
 };
 
 export const useGames = () => {
-  return useQuery<Game[], Error>('games', fetchGames);
+  return useQuery<Game[], Error>('games', fetchGames, {
+    refetchOnWindowFocus: false,
+  });
 };
