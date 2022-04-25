@@ -23,7 +23,7 @@ function App() {
     <AuthContext.Provider value={{ userInfo, setUserInfo }}>
       <QueryClientProvider client={queryClient}>
         <MantineProvider theme={theme} withNormalizeCSS withGlobalStyles>
-          <NotificationsProvider>
+          <NotificationsProvider position="bottom-center">
             <Global
               styles={() => ({
                 body: {
