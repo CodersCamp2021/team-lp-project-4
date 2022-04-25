@@ -1,6 +1,6 @@
 # CodersCamp 2021 - Team: Łukasz Powązka
 
-## Project 2: React.js
+## Project 4: Typescript
 
 **Mentor**: [Łukasz Powązka](https://github.com/lukiq)
 
