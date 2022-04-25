@@ -150,7 +150,7 @@ const useGamesStyles = createStyles((theme) => ({
 
   // AllGames + TopRated
   selectionContainer: {
-    paddingTop: 30,
+    paddingTop: 10,
     width: 540,
     [theme.fn.smallerThan('xl')]: {
       justifyContent: 'center',

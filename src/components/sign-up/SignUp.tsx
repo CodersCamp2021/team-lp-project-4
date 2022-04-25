@@ -113,7 +113,7 @@ function SignUp() {
   return (
     <Stack
       sx={{
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
       }}
       mx="auto"

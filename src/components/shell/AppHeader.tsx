@@ -21,7 +21,7 @@ const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
       height={70}
       className={classes.header}
       px="20%"
-      sx={{ background: 'none', border: 'none' }}
+      sx={{ background: 'none', border: 'none', position: 'static' }}
     >
       <Box
         sx={{
@@ -35,8 +35,7 @@ const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
           component={Link}
           to="/"
           align="center"
-          variant="gradient"
-          gradient={{ from: 'indigo', to: 'violet', deg: 45 }}
+          color="#ffffff"
           size="xl"
           weight={700}
           sx={{
@@ -51,8 +50,8 @@ const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
           <Burger
             opened={opened}
             onClick={() => setOpenedCallback((o) => !o)}
-            size={30}
-            color="#7048E8"
+            size={40}
+            color="#ffffff"
             mr="md"
           />
         </MediaQuery>
@@ -61,20 +60,28 @@ const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
             <Button
               compact
               size="lg"
-              color="violet"
-              variant="subtle"
               component={Link}
               to="/games"
+              sx={{
+                color: '#ffffff',
+                background: 'none',
+                mixBlendMode: 'screen',
+                '&:hover': { background: '#7950f2' },
+              }}
             >
               Games
             </Button>
             <Button
               compact
               size="lg"
-              color="violet"
-              variant="subtle"
               component={Link}
               to="/login"
+              sx={{
+                color: '#ffffff',
+                background: 'none',
+                mixBlendMode: 'screen',
+                '&:hover': { background: '#7950f2' },
+              }}
             >
               Sign in
             </Button>
@@ -84,6 +91,12 @@ const AppHeader = ({ opened, classes, setOpenedCallback }: AppHeaderProps) => {
               color="violet"
               component={Link}
               to="/register"
+              sx={{
+                color: '#7950f2',
+                background: '#ffffff',
+                mixBlendMode: 'screen',
+                '&:hover': { color: '#ffffff', background: '#7950f2' },
+              }}
             >
               Sign up
             </Button>
