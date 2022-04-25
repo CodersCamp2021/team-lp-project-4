@@ -13,6 +13,7 @@ const queryClient = new QueryClient();
 const theme: MantineThemeOverride = {
   fontFamily: 'Poppins, sans-serif',
   headings: { fontFamily: 'Poppins, sans-serif' },
+  colorScheme: 'dark',
 };
 
 function App() {
