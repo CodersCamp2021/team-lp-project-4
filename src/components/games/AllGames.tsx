@@ -26,8 +26,8 @@ const AllGames = () => {
           breakpoints={[{ maxWidth: 1024, cols: 1, spacing: 'md' }]}
           sx={{ padding: '0 20px' }}
         >
-          {gamesToDisplay?.map((game, index) => (
-            <GameTile key={game._id} game={game} index={index} />
+          {gamesToDisplay?.map((game) => (
+            <GameTile key={game._id} game={game} />
           ))}
         </SimpleGrid>
       </ScrollArea>

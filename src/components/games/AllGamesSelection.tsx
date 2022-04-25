@@ -24,8 +24,8 @@ const AllGamesSelection = () => {
       </Text>
       <Stack className={classes.gameTilesWrapper} spacing={10}>
         {!isLoading
-          ? gamesToDisplay?.map((game, index) => (
-              <GameTile key={game._id} game={game} index={index} />
+          ? gamesToDisplay?.map((game) => (
+              <GameTile key={game._id} game={game} />
             ))
           : [0, 1, 2, 3].map((_, index) => (
               <Skeleton

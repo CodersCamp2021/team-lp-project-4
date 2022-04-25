@@ -16,10 +16,9 @@ const HomeGames = () => {
         justifyContent: 'center',
       }}
     >
-      {gamesToDisplay?.map((game) => {
-        const { _id, title, cover } = game;
-        return <HomeGame key={_id} id={_id} title={title} src={cover.thumb} />;
-      })}
+      {gamesToDisplay?.map(({ _id, title, cover }) => (
+        <HomeGame key={_id} id={_id} title={title} src={cover.thumb} />
+      ))}
     </SimpleGrid>
   );
 };
