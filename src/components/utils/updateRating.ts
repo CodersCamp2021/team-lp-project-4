@@ -1,9 +1,10 @@
 type Response = {
   message?: string;
   error?: string;
+  ok?: string;
 };
 
-const postRating = <T extends object>(
+const putRating = <T extends object>(
   url: string,
   resBody?: RequestInit | undefined,
 ): Promise<T> => {
@@ -15,17 +16,19 @@ const postRating = <T extends object>(
 export const updateRating = async ({
   rating,
   gameId,
+  userId,
 }: {
   rating: number;
   gameId: string;
+  userId: string;
 }) => {
-  const data = await postRating<Response>(
+  const response = await putRating<Response>(
     'https://team-lp-project-3.herokuapp.com/rate',
     {
       method: 'PUT',
       body: JSON.stringify({
         gameId: gameId,
-        userId: '6255da29d3e26228536f50d8',
+        userId: userId,
         rating: rating,
       }),
       credentials: 'include',
@@ -34,6 +37,9 @@ export const updateRating = async ({
       },
     },
   );
+  if (!(response.message === 'Rating updated.')) {
+    throw new Error('Not logged in');
+  }
 
-  return data;
+  return response;
 };
