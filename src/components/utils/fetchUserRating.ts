@@ -6,12 +6,16 @@ export const fetchUserRating = (
 ): Promise<UserRating> => {
   return typeof userId === 'undefined'
     ? Promise.reject(new Error('Invalid id'))
-    : (fetch('http://localhost:3001/rate', {
-        method: 'GET',
+    : (fetch('https://team-lp-project-3.herokuapp.com/rate', {
+        method: 'POST',
         body: JSON.stringify({
           userId: userId,
           gameId: gameId,
         }),
+        credentials: 'include',
+        headers: {
+          'content-type': 'application/json',
+        },
       })
         .then((data) => data.json())
         .catch((error) => console.error(error)) as Promise<UserRating>);

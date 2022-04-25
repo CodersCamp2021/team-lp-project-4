@@ -10,7 +10,7 @@ import {
 } from 'react-icons/ai';
 import { BsCheckLg } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { AuthContext } from '../../AuthContext';
 import useGameStyles from '../../hooks/use-game-styles';
 import { Game } from '../../interfaces/Games';
@@ -36,6 +36,7 @@ const GameHero = ({
   const [liked, setLiked] = useState(0);
   const { classes } = useGameStyles();
   const auth = useContext(AuthContext);
+  const queryClient = useQueryClient();
 
   useQuery<UserRating, Error>(
     ['userRating', auth?.userInfo?.id],
@@ -53,8 +54,10 @@ const GameHero = ({
   );
 
   const { mutate } = useMutation(updateRating, {
-    onSuccess: (_, variables) => {
+    onSuccess: async (_, variables) => {
       setLiked(variables.rating);
+      await queryClient.invalidateQueries(['ratings', gameId]);
+      await queryClient.invalidateQueries(['userRating', auth?.userInfo?.id]);
       showNotification({
         title: 'Success!',
         message: 'Game rated.',
@@ -63,6 +66,7 @@ const GameHero = ({
       });
     },
     onError: (error) => {
+      auth?.setUserInfo(null);
       showNotification({
         title: 'Something went wrong!',
         message: `Please make sure you're logged in.`,
@@ -73,9 +77,21 @@ const GameHero = ({
     },
   });
 
-  const handleLike = () => mutate({ rating: 2, gameId });
-  const handleDislike = () => mutate({ rating: 1, gameId });
-  const handleReset = () => mutate({ rating: 0, gameId });
+  const handleLike = () => {
+    if (auth?.userInfo?.id) {
+      mutate({ rating: 2, gameId, userId: auth.userInfo.id });
+    }
+  };
+  const handleDislike = () => {
+    if (auth?.userInfo?.id) {
+      mutate({ rating: 1, gameId, userId: auth.userInfo.id });
+    }
+  };
+  const handleReset = () => {
+    if (auth?.userInfo?.id) {
+      mutate({ rating: 0, gameId, userId: auth.userInfo.id });
+    }
+  };
 
   return (
     <Grid className={classes.gameHeroWrapper}>
@@ -114,7 +130,7 @@ const GameHero = ({
         <Center>
           <Button
             leftIcon={
-              liked === 2 ? (
+              auth?.userInfo && liked === 2 ? (
                 <AiFillLike size={40} fill="#49d66f" />
               ) : (
                 <AiOutlineLike size={40} />
@@ -131,10 +147,10 @@ const GameHero = ({
             onClick={liked === 2 ? handleReset : handleLike}
           >
             <Text
-              color={liked === 2 ? '#49d66f' : 'inherit'}
+              color={auth?.userInfo && liked === 2 ? '#49d66f' : 'inherit'}
               className={classes.thumbsText}
               sx={
-                liked === 2
+                auth?.userInfo && liked === 2
                   ? {
                       textShadow: '1px 0 0 #49d66f, 0 1px 0 #49d66f',
                     }
@@ -146,7 +162,7 @@ const GameHero = ({
           </Button>
           <Button
             leftIcon={
-              liked === 1 ? (
+              auth?.userInfo && liked === 1 ? (
                 <AiFillDislike size={40} fill="#c71e2c" />
               ) : (
                 <AiOutlineDislike size={40} />
@@ -163,9 +179,9 @@ const GameHero = ({
             onClick={liked === 1 ? handleReset : handleDislike}
           >
             <Text
-              color={liked === 1 ? '#c71e2c' : 'inherit'}
+              color={auth?.userInfo && liked === 1 ? '#c71e2c' : 'inherit'}
               sx={
-                liked === 1
+                auth?.userInfo && liked === 1
                   ? {
                       textShadow: '1px 0 0 #c71e2c, 0 1px 0 #c71e2c',
                     }

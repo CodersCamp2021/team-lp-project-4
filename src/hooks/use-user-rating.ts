@@ -15,7 +15,7 @@ const fetchUserRating = (
 ): Promise<User> => {
   return typeof userId === 'undefined'
     ? Promise.reject(new Error('Invalid id'))
-    : (fetch('http://localhost:3001/rate', {
+    : (fetch('https://team-lp-project-3.herokuapp.com/rate', {
         method: 'GET',
         body: JSON.stringify({
           userId: userId,

@@ -61,7 +61,7 @@ const GameInfo = ({ description, ratings }: GameInfoProps) => {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'column-reverse',
             height: '90%',
             justifyContent: 'space-evenly',
           }}

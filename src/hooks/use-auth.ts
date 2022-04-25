@@ -11,7 +11,7 @@ export const useAuth = (): [
     const getAuth = async () => {
       try {
         const data = await fetchData<UserInfo>(
-          'http://localhost:3001/user/userInfo',
+          'https://team-lp-project-3.herokuapp.com/user/userInfo',
           {
             credentials: 'include',
             headers: {
