@@ -95,7 +95,17 @@ const GameHero = ({
 
   return (
     <Grid className={classes.gameHeroWrapper}>
-      <Grid.Col span={8}>
+      <Grid.Col
+        md={8}
+        span={12}
+        sx={(theme) => ({
+          [theme.fn.smallerThan('lg')]: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+        })}
+      >
         <Box className={classes.heroInfoWrapper}>
           <Image
             src={cover?.screenshot_med}
@@ -113,86 +123,91 @@ const GameHero = ({
           </Box>
         </Box>
       </Grid.Col>
-      <Grid.Col span={3} sx={{ margin: '0 auto' }}>
-        <Center>
-          <Text className={classes.heroRating}>
-            {ratings && ratings.rating?.length > 0
-              ? calcRatings(ratings.rating)
-              : 0}
-            /5{' '}
-            <AiFillStar
-              fill="gold"
-              size={70}
-              style={{ verticalAlign: 'middle' }}
-            />
-          </Text>
-        </Center>
-        <Center>
-          <Button
-            leftIcon={
-              auth?.userInfo && liked === 2 ? (
-                <AiFillLike size={40} fill="#49d66f" />
-              ) : (
-                <AiOutlineLike size={40} />
-              )
-            }
-            disabled={auth?.userInfo ? false : true}
-            className={classes.thumbsButtons}
-            sx={{
-              '&:disabled': {
-                backgroundColor: 'transparent !important',
-                color: '#5c6268 !important',
-              },
-            }}
-            onClick={liked === 2 ? handleReset : handleLike}
-          >
-            <Text
-              color={auth?.userInfo && liked === 2 ? '#49d66f' : 'inherit'}
-              className={classes.thumbsText}
-              sx={
-                auth?.userInfo && liked === 2
-                  ? {
-                      textShadow: '1px 0 0 #49d66f, 0 1px 0 #49d66f',
-                    }
-                  : { textShadow: 'none' }
-              }
-            >
-              LIKE
+      <Grid.Col
+        span={3}
+        sx={{
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Box>
+          <Center>
+            <Text className={classes.heroRating}>
+              {ratings && ratings.rating?.length > 0
+                ? calcRatings(ratings.rating)
+                : 0}
+              /5 <AiFillStar fill="gold" style={{ verticalAlign: 'middle' }} />
             </Text>
-          </Button>
-          <Button
-            leftIcon={
-              auth?.userInfo && liked === 1 ? (
-                <AiFillDislike size={40} fill="#c71e2c" />
-              ) : (
-                <AiOutlineDislike size={40} />
-              )
-            }
-            disabled={auth?.userInfo ? false : true}
-            className={classes.thumbsButtons}
-            sx={{
-              '&:disabled': {
-                backgroundColor: 'transparent !important',
-                color: '#5c6268 !important',
-              },
-            }}
-            onClick={liked === 1 ? handleReset : handleDislike}
-          >
-            <Text
-              color={auth?.userInfo && liked === 1 ? '#c71e2c' : 'inherit'}
-              sx={
-                auth?.userInfo && liked === 1
-                  ? {
-                      textShadow: '1px 0 0 #c71e2c, 0 1px 0 #c71e2c',
-                    }
-                  : { textShadow: 'none' }
+          </Center>
+          <Center>
+            <Button
+              leftIcon={
+                auth?.userInfo && liked === 2 ? (
+                  <AiFillLike size={40} fill="#49d66f" />
+                ) : (
+                  <AiOutlineLike size={40} />
+                )
               }
-              className={classes.thumbsText}
+              disabled={auth?.userInfo ? false : true}
+              className={classes.thumbsButtons}
+              sx={{
+                '&:disabled': {
+                  backgroundColor: 'transparent !important',
+                  color: '#5c6268 !important',
+                },
+              }}
+              onClick={liked === 2 ? handleReset : handleLike}
             >
-              DISLIKE
-            </Text>
-          </Button>
-        </Center>
+              <Text
+                color={auth?.userInfo && liked === 2 ? '#49d66f' : 'inherit'}
+                className={classes.thumbsText}
+                sx={
+                  auth?.userInfo && liked === 2
+                    ? {
+                        textShadow: '1px 0 0 #49d66f, 0 1px 0 #49d66f',
+                      }
+                    : { textShadow: 'none' }
+                }
+              >
+                LIKE
+              </Text>
+            </Button>
+            <Button
+              leftIcon={
+                auth?.userInfo && liked === 1 ? (
+                  <AiFillDislike size={40} fill="#c71e2c" />
+                ) : (
+                  <AiOutlineDislike size={40} />
+                )
+              }
+              disabled={auth?.userInfo ? false : true}
+              className={classes.thumbsButtons}
+              sx={{
+                '&:disabled': {
+                  backgroundColor: 'transparent !important',
+                  color: '#5c6268 !important',
+                },
+              }}
+              onClick={liked === 1 ? handleReset : handleDislike}
+            >
+              <Text
+                color={auth?.userInfo && liked === 1 ? '#c71e2c' : 'inherit'}
+                sx={
+                  auth?.userInfo && liked === 1
+                    ? {
+                        textShadow: '1px 0 0 #c71e2c, 0 1px 0 #c71e2c',
+                      }
+                    : { textShadow: 'none' }
+                }
+                className={classes.thumbsText}
+              >
+                DISLIKE
+              </Text>
+            </Button>
+          </Center>
+        </Box>
       </Grid.Col>
     </Grid>
   );

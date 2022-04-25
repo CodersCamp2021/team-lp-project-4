@@ -10,11 +10,12 @@ type GameInfoProps = Pick<Game, 'description'> & {
 const GameInfo = ({ description, ratings }: GameInfoProps) => {
   return (
     <Grid>
-      <Grid.Col span={8}>
+      <Grid.Col md={8} span={12}>
         <Box
-          sx={{
+          sx={(theme) => ({
             width: '94%',
-          }}
+            [theme.fn.smallerThan('md')]: { width: '100%', margin: '0 auto' },
+          })}
         >
           <Text
             color="rgba(167, 156, 184, 1)"
@@ -30,23 +31,39 @@ const GameInfo = ({ description, ratings }: GameInfoProps) => {
           <ScrollArea
             offsetScrollbars={true}
             type="auto"
-            sx={{ height: 350, paddingRight: 15 }}
+            sx={(theme) => ({
+              height: 350,
+              paddingRight: 15,
+              [theme.fn.smallerThan('xl')]: {
+                width: '90%',
+              },
+              [theme.fn.smallerThan('md')]: {
+                width: '100%',
+              },
+            })}
           >
             <Text
               color="#EBEBEB"
               align="justify"
-              sx={{
+              sx={(theme) => ({
                 fontWeight: 200,
                 fontSize: 24,
                 lineHeight: '36px',
-              }}
+                [theme.fn.smallerThan('xl')]: {
+                  fontSize: 18,
+                  lineHeight: '24px',
+                },
+              })}
             >
               {description}
             </Text>
           </ScrollArea>
         </Box>
       </Grid.Col>
-      <Grid.Col span={4}>
+      <Grid.Col
+        span={4}
+        sx={(theme) => ({ [theme.fn.smallerThan('md')]: { margin: '0 auto' } })}
+      >
         <Text
           color="#A79CB8"
           sx={{
@@ -54,6 +71,7 @@ const GameInfo = ({ description, ratings }: GameInfoProps) => {
             fontSize: 34,
             align: 'left',
             textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+            whiteSpace: 'nowrap',
           }}
         >
           RATED BY
@@ -64,6 +82,7 @@ const GameInfo = ({ description, ratings }: GameInfoProps) => {
             flexDirection: 'column-reverse',
             height: '90%',
             justifyContent: 'space-evenly',
+            alignItems: 'center',
           }}
         >
           {ratings && ratings.rating.length > 0
