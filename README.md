@@ -13,7 +13,7 @@
 - [Krzysztof Prońko](https://github.com/Ruud1990)
 - [Paweł Stępień](https://github.com/pastepi)
 
-# 🖼️ Overview
+# 🖼️ GameWeb - App Overview
 
 Deployments:
 * [Heroku](https://team-lp-project-4.herokuapp.com/)
@@ -22,7 +22,7 @@ Deployments:
 
 The project serves as a frontend to https://github.com/CodersCamp2021/team-lp-project-3.
 
-The app allows you to browse and rate a selection of games that's provided by above-mentioned backend service. 
+GameWeb allows you to browse and rate a selection of games that's provided by above-mentioned backend service. 
 
 
 As it stands the app has following features:
